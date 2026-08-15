@@ -1,5 +1,5 @@
 document.addEventListener("click", function (event) {
-    if (event.target.id === "bookNow" || event.target.id === "bookNow2") {
+   if (event.target.id === "bookNow" || event.target.id === "bookNow2" || event.target.id === "bookNowTop") {
         const confirmBooking = confirm(
             "Would you like to contact Bankz Comfort Apartments on WhatsApp to book your stay?"
         );
