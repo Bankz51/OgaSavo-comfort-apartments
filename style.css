@@ -382,7 +382,39 @@ footer p {
 .review-card h4 {
     margin-top: 15px;
 }
+.contact-section {
+    padding: 60px 20px;
+    text-align: center;
+}
 
+.contact-section h2 {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.contact-section p {
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.whatsapp-contact {
+    display: inline-block;
+    padding: 14px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.2s ease;
+}
+
+.whatsapp-contact:hover {
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .contact-section {
+        padding: 45px 20px;
+    }
+}
 @media (max-width: 768px) {
     .reviews-grid {
         grid-template-columns: 1fr;
