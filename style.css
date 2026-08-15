@@ -343,3 +343,48 @@ footer p {
         grid-template-columns: 1fr;
     }
 }
+.reviews {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.reviews h2 {
+    font-size: 32px;
+    margin-bottom: 35px;
+}
+
+.reviews-grid {
+    max-width: 1000px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.review-card {
+    padding: 25px 20px;
+    border-radius: 12px;
+    background: #f7f7f7;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.stars {
+    font-size: 20px;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.review-card p {
+    line-height: 1.6;
+    font-style: italic;
+}
+
+.review-card h4 {
+    margin-top: 15px;
+}
+
+@media (max-width: 768px) {
+    .reviews-grid {
+        grid-template-columns: 1fr;
+    }
+}
