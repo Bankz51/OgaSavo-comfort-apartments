@@ -1,7 +1,5 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const bookNow = document.getElementById("bookNow");
-
-    bookNow.addEventListener("click", function () {
+document.addEventListener("click", function (event) {
+    if (event.target.id === "bookNow") {
         const confirmBooking = confirm(
             "Would you like to contact Bankz Comfort Apartments on WhatsApp to book your stay?"
         );
@@ -12,5 +10,5 @@ document.addEventListener("DOMContentLoaded", function () {
                 "_blank"
             );
         }
-    });
+    }
 });
