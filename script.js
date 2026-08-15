@@ -1,1 +1,1 @@
-alert("Welcome to Bankz Comfort Apartment! 🏠");
+console.log("Bankz Comfort Apartment website is working!");
