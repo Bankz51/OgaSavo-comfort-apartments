@@ -268,3 +268,40 @@ footer p {
         grid-template-columns: 1fr;
     }
 }
+.price-box {
+    max-width: 500px;
+    margin: 35px auto 0;
+    padding: 30px 20px;
+    border-radius: 15px;
+    background: #f7f7f7;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.price-box h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.price span {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.price-box p:last-of-type {
+    margin-bottom: 20px;
+}
+
+.price-box .book-now {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
