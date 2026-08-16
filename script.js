@@ -12,3 +12,5 @@ document.addEventListener("click", function (event) {
         }
     }
 });
+const bookButton = document.getElementById("bookNow");
+bookButton.textContent = "Reserve Now";
