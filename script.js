@@ -18,7 +18,11 @@ const apartmentPrice = "KSh 3,000";
 document.getElementById("nightlyPrice").textContent = apartmentPrice + " per night";
 document.getElementById("displayPrice").textContent = apartmentPrice;
 function testBooking() {
-    alert("Booking button works!");
+    const guestName = prompt("What is your name?");
+    
+    if (guestName) {
+        alert("Welcome " + guestName + "!");
+    }
 }
 
 document.getElementById("testButton").addEventListener("click", testBooking);
