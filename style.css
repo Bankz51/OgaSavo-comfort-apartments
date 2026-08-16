@@ -423,3 +423,33 @@ footer p {
 html {
     scroll-behavior: smooth;
 }
+#bookingForm {
+    max-width: 500px;
+    margin: 25px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#bookingForm input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+#bookingForm label {
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+#bookingForm button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
