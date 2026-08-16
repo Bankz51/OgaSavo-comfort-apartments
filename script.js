@@ -99,3 +99,76 @@ function calculateBooking() {
 
 checkInInput.addEventListener("change", calculateBooking);
 checkOutInput.addEventListener("change", calculateBooking);
+const bookingForm = document.getElementById("bookingForm");
+const checkInInput = document.getElementById("checkIn");
+const checkOutInput = document.getElementById("checkOut");
+const nightsInput = document.getElementById("nights");
+const guestsInput = document.getElementById("guests");
+const guestNameInput = document.getElementById("guestName");
+const guestPhoneInput = document.getElementById("guestPhone");
+const bookingTotal = document.getElementById("bookingTotal");
+
+function calculateBooking() {
+    if (!checkInInput.value || !checkOutInput.value) {
+        nightsInput.value = "";
+        bookingTotal.textContent = "Total: KSh 0";
+        return;
+    }
+
+    const checkIn = new Date(checkInInput.value);
+    const checkOut = new Date(checkOutInput.value);
+
+    const difference = checkOut - checkIn;
+    const nights = Math.round(difference / (1000 * 60 * 60 * 24));
+
+    if (nights > 0) {
+        nightsInput.value = nights;
+
+        const total = 2500 * nights;
+        bookingTotal.textContent = "Total: KSh " + total;
+    } else {
+        nightsInput.value = "";
+        bookingTotal.textContent = "Total: KSh 0";
+    }
+}
+
+checkInInput.addEventListener("change", calculateBooking);
+checkOutInput.addEventListener("change", calculateBooking);
+
+bookingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    calculateBooking();
+
+    const name = guestNameInput.value;
+    const phone = guestPhoneInput.value;
+    const checkIn = checkInInput.value;
+    const checkOut = checkOutInput.value;
+    const nights = Number(nightsInput.value);
+    const guests = Number(guestsInput.value);
+    const total = 2500 * nights;
+
+    if (nights <= 0) {
+        alert("Please select a valid check-in and check-out date.");
+        return;
+    }
+
+    const message =
+        "Hello Bankz Comfort Apartments,%0A%0A" +
+        "I would like to make a booking.%0A%0A" +
+        "Name: " + encodeURIComponent(name) + "%0A" +
+        "Phone: " + encodeURIComponent(phone) + "%0A" +
+        "Check-in: " + encodeURIComponent(checkIn) + "%0A" +
+        "Check-out: " + encodeURIComponent(checkOut) + "%0A" +
+        "Nights: " + nights + "%0A" +
+        "Guests: " + guests + "%0A" +
+        "Price per night: KSh 2,500%0A" +
+        "Total: KSh " + total;
+
+    const whatsappNumber = "YOUR_WHATSAPP_NUMBER";
+
+    window.open(
+        "https://wa.me/" + whatsappNumber + "?text=" + message,
+        "_blank"
+    );
+});
