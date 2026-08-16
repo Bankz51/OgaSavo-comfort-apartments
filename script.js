@@ -20,9 +20,22 @@ document.getElementById("displayPrice").textContent = apartmentPrice;
 function testBooking() {
     const guestName = prompt("What is your name?");
     
-    if (guestName) {
-        alert("Welcome " + guestName + "!");
-    }
-}
+    if (!guestName) return;
 
+    const nights = Number(prompt("How many nights will you stay?"));
+
+    if (!nights || nights < 1) {
+        alert("Please enter a valid number of nights.");
+        return;
+    }
+
+    const total = 3000 * nights;
+
+    alert(
+        "Welcome " + guestName +
+        "!\n\nNights: " + nights +
+        "\nPrice per night: KSh 3,000" +
+        "\nTotal: KSh " + total
+    );
+}
 document.getElementById("testButton").addEventListener("click", testBooking);
