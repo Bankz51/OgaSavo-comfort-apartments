@@ -38,4 +38,31 @@ function testBooking() {
         "\nTotal: KSh " + total
     );
 }
-document.getElementById("testButton").addEventListener("click", testBooking);
+document.getElementById("bookingForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const guestName = document.getElementById("guestName").value;
+    const guestPhone = document.getElementById("guestPhone").value;
+    const checkIn = document.getElementById("checkIn").value;
+    const nights = Number(document.getElementById("nights").value);
+    const guests = Number(document.getElementById("guests").value);
+
+    const pricePerNight = 3000;
+    const total = pricePerNight * nights;
+
+    const message =
+        "Hello Bankz Comfort Apartments,%0A%0A" +
+        "I would like to make a booking.%0A%0A" +
+        "Name: " + encodeURIComponent(guestName) + "%0A" +
+        "Phone: " + encodeURIComponent(guestPhone) + "%0A" +
+        "Check-in: " + encodeURIComponent(checkIn) + "%0A" +
+        "Nights: " + nights + "%0A" +
+        "Guests: " + guests + "%0A" +
+        "Price per night: KSh 3,000%0A" +
+        "Total: KSh " + total;
+
+    window.open(
+        "https://wa.me/254759651705?text=" + message,
+        "_blank"
+    );
+});
