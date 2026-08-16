@@ -17,3 +17,8 @@ bookButton.textContent = "Reserve Now";
 const apartmentPrice = "KSh 3,000";
 document.getElementById("nightlyPrice").textContent = apartmentPrice + " per night";
 document.getElementById("displayPrice").textContent = apartmentPrice;
+function testBooking() {
+    alert("Booking button works!");
+}
+
+document.getElementById("testButton").addEventListener("click", testBooking);
