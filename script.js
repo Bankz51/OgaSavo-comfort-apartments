@@ -14,7 +14,7 @@ document.addEventListener("click", function (event) {
 });
 const bookButton = document.getElementById("bookNow");
 bookButton.textContent = "Reserve Now";
-const apartmentPrice = "KSh 3,000";
+const apartmentPrice = "KSh 2,500";
 document.getElementById("nightlyPrice").textContent = apartmentPrice + " per night";
 document.getElementById("displayPrice").textContent = apartmentPrice;
 function testBooking() {
@@ -29,12 +29,12 @@ function testBooking() {
         return;
     }
 
-    const total = 3000 * nights;
+    const total = 2500 * nights;
 
     alert(
         "Welcome " + guestName +
         "!\n\nNights: " + nights +
-        "\nPrice per night: KSh 3,000" +
+        "\nPrice per night: KSh 2,500" +
         "\nTotal: KSh " + total
     );
 }
@@ -47,7 +47,7 @@ document.getElementById("bookingForm").addEventListener("submit", function(event
     const nights = Number(document.getElementById("nights").value);
     const guests = Number(document.getElementById("guests").value);
 
-    const pricePerNight = 3000;
+    const pricePerNight = 2500;
     const total = pricePerNight * nights;
 
     const message =
@@ -58,11 +58,21 @@ document.getElementById("bookingForm").addEventListener("submit", function(event
         "Check-in: " + encodeURIComponent(checkIn) + "%0A" +
         "Nights: " + nights + "%0A" +
         "Guests: " + guests + "%0A" +
-        "Price per night: KSh 3,000%0A" +
+        "Price per night: KSh 2,500%0A" +
         "Total: KSh " + total;
 
     window.open(
         "https://wa.me/254759651705?text=" + message,
         "_blank"
     );
+});
+const nightsInput = document.getElementById("nights");
+const bookingTotal = document.getElementById("bookingTotal");
+
+nightsInput.addEventListener("input", function () {
+    const nights = Number(nightsInput.value);
+    const total = 2500 * nights;
+
+    bookingTotal.textContent =
+        nights > 0 ? "Total: KSh " + total : "Total: KSh 0";
 });
