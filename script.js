@@ -165,10 +165,10 @@ bookingForm.addEventListener("submit", function (event) {
         "Price per night: KSh 2,500%0A" +
         "Total: KSh " + total;
 
-    const whatsappNumber = "YOUR_WHATSAPP_NUMBER";
+    const whatsappNumber = "254759651705";
 
     window.open(
-        "https://wa.me/" + whatsappNumber + "?text=" + message,
+        "https://wa.me/" + 254759651705 + "?text=" + message,
         "_blank"
     );
 });
