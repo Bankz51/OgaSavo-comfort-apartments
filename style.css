@@ -528,3 +528,68 @@ footer p {
         margin: 10px auto 0;
     }
 }
+/* PREMIUM BOOKING SECTION */
+
+.booking {
+    position: relative;
+    padding: 90px 20px;
+    background: linear-gradient(135deg, #071a2d, #102d48);
+    color: white;
+}
+
+.booking h2 {
+    color: white;
+    font-size: 40px;
+    margin-bottom: 12px;
+}
+
+.booking > p {
+    color: #e5e5e5;
+}
+
+#bookingForm {
+    max-width: 550px;
+    margin: 35px auto;
+    padding: 35px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+}
+
+#bookingForm label {
+    color: #071a2d;
+    font-size: 15px;
+}
+
+#bookingForm input {
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.2s;
+}
+
+#bookingForm input:focus {
+    border-color: #d6a62a;
+    box-shadow: 0 0 0 3px rgba(214,166,42,0.15);
+}
+
+#bookingTotal {
+    color: #071a2d !important;
+    font-size: 21px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+#nightlyPrice {
+    color: #d6a62a;
+    font-weight: bold;
+}
+
+.booking > p:last-of-type {
+    color: white;
+}
+
+.booking > #bookNow {
+    margin-top: 10px;
+}
