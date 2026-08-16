@@ -38,10 +38,16 @@ p {
     box-shadow: 0 3px 15px rgba(0,0,0,0.15);
 }
 
-.navbar h2 {
-    color: #d6a62a;
-    margin: 0;
-    font-size: 22px;
+.brand {
+    display: flex;
+    align-items: center;
+}
+
+.brand img {
+    width: 210px;
+    height: auto;
+    display: block;
+}
 }
 
 .nav-links {
