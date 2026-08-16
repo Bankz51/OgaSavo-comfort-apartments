@@ -44,6 +44,7 @@ document.getElementById("bookingForm").addEventListener("submit", function(event
     const guestName = document.getElementById("guestName").value;
     const guestPhone = document.getElementById("guestPhone").value;
     const checkIn = document.getElementById("checkIn").value;
+   const checkout = document.getElementById("checkout").value;
     const nights = Number(document.getElementById("nights").value);
     const guests = Number(document.getElementById("guests").value);
 
@@ -56,6 +57,7 @@ document.getElementById("bookingForm").addEventListener("submit", function(event
         "Name: " + encodeURIComponent(guestName) + "%0A" +
         "Phone: " + encodeURIComponent(guestPhone) + "%0A" +
         "Check-in: " + encodeURIComponent(checkIn) + "%0A" +
+       "Check-out: " + encodeURIComponent(checkout) + "%0A" +
         "Nights: " + nights + "%0A" +
         "Guests: " + guests + "%0A" +
         "Price per night: KSh 2,500%0A" +
