@@ -14,5 +14,6 @@ document.addEventListener("click", function (event) {
 });
 const bookButton = document.getElementById("bookNow");
 bookButton.textContent = "Reserve Now";
-const nightlyPrice = document.getElementById("nightlyPrice");
-nightlyPrice.textContent = "KSh 3,000 per night";
+const apartmentPrice = "KSh 3,000";
+document.getElementById("nightlyPrice").textContent = apartmentPrice + " per night";
+document.getElementById("displayPrice").textContent = apartmentPrice;
