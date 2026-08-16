@@ -38,75 +38,15 @@ function testBooking() {
         "\nTotal: KSh " + total
     );
 }
-document.getElementById("bookingForm").addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    const guestName = document.getElementById("guestName").value;
-    const guestPhone = document.getElementById("guestPhone").value;
-    const checkIn = document.getElementById("checkIn").value;
-   const checkout = document.getElementById("checkout").value;
-    const nights = Number(document.getElementById("nights").value);
-    const guests = Number(document.getElementById("guests").value);
-
-    const pricePerNight = 2500;
-    const total = pricePerNight * nights;
-
-    const message =
-        "Hello Bankz Comfort Apartments,%0A%0A" +
-        "I would like to make a booking.%0A%0A" +
-        "Name: " + encodeURIComponent(guestName) + "%0A" +
-        "Phone: " + encodeURIComponent(guestPhone) + "%0A" +
-        "Check-in: " + encodeURIComponent(checkIn) + "%0A" +
-       "Check-out: " + encodeURIComponent(checkout) + "%0A" +
-        "Nights: " + nights + "%0A" +
-        "Guests: " + guests + "%0A" +
-        "Price per night: KSh 2,500%0A" +
-        "Total: KSh " + total;
-
-    window.open(
-        "https://wa.me/254759651705?text=" + message,
-        "_blank"
-    );
-});
 const checkInInput = document.getElementById("checkIn");
 const checkOutInput = document.getElementById("checkOut");
 const nightsInput = document.getElementById("nights");
 const bookingTotal = document.getElementById("bookingTotal");
 
-function calculateBooking() {
-    if (!checkInInput.value || !checkOutInput.value) {
-        nightsInput.value = "";
-        bookingTotal.textContent = "Total: KSh 0";
-        return;
-    }
-
-    const checkIn = new Date(checkInInput.value);
-    const checkOut = new Date(checkOutInput.value);
-
-    const difference = checkOut - checkIn;
-    const nights = Math.round(difference / (1000 * 60 * 60 * 24));
-
-    if (nights > 0) {
-        nightsInput.value = nights;
-
-        const total = 2500 * nights;
-        bookingTotal.textContent = "Total: KSh " + total;
-    } else {
-        nightsInput.value = "";
-        bookingTotal.textContent = "Total: KSh 0";
-    }
-}
-
-checkInInput.addEventListener("change", calculateBooking);
-checkOutInput.addEventListener("change", calculateBooking);
 const bookingForm = document.getElementById("bookingForm");
-const checkInInput = document.getElementById("checkIn");
-const checkOutInput = document.getElementById("checkOut");
-const nightsInput = document.getElementById("nights");
-const guestsInput = document.getElementById("guests");
 const guestNameInput = document.getElementById("guestName");
 const guestPhoneInput = document.getElementById("guestPhone");
-const bookingTotal = document.getElementById("bookingTotal");
+const guestsInput = document.getElementById("guests");
 
 function calculateBooking() {
     if (!checkInInput.value || !checkOutInput.value) {
@@ -115,8 +55,8 @@ function calculateBooking() {
         return;
     }
 
-    const checkIn = new Date(checkInInput.value);
-    const checkOut = new Date(checkOutInput.value);
+    const checkIn = new Date(checkInInput.value + "T00:00:00");
+    const checkOut = new Date(checkOutInput.value + "T00:00:00");
 
     const difference = checkOut - checkIn;
     const nights = Math.round(difference / (1000 * 60 * 60 * 24));
