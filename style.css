@@ -508,8 +508,8 @@ footer p {
     padding: 15px 30px;
     border-radius: 30px;
     background: #25D366;
-    color: white;
-    text-decoration: none;
+    color: #ffffff !important;
+    text-decoration: none !important;
     font-size: 17px;
     font-weight: bold;
     transition: 0.3s;
@@ -518,6 +518,7 @@ footer p {
 .hero-whatsapp:hover {
     transform: translateY(-2px);
     background: #20b957;
+    color: #ffffff !important;
 }
 
 @media (max-width: 600px) {
