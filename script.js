@@ -68,13 +68,34 @@ document.getElementById("bookingForm").addEventListener("submit", function(event
         "_blank"
     );
 });
+const checkInInput = document.getElementById("checkIn");
+const checkOutInput = document.getElementById("checkOut");
 const nightsInput = document.getElementById("nights");
 const bookingTotal = document.getElementById("bookingTotal");
 
-nightsInput.addEventListener("input", function () {
-    const nights = Number(nightsInput.value);
-    const total = 2500 * nights;
+function calculateBooking() {
+    if (!checkInInput.value || !checkOutInput.value) {
+        nightsInput.value = "";
+        bookingTotal.textContent = "Total: KSh 0";
+        return;
+    }
 
-    bookingTotal.textContent =
-        nights > 0 ? "Total: KSh " + total : "Total: KSh 0";
-});
+    const checkIn = new Date(checkInInput.value);
+    const checkOut = new Date(checkOutInput.value);
+
+    const difference = checkOut - checkIn;
+    const nights = Math.round(difference / (1000 * 60 * 60 * 24));
+
+    if (nights > 0) {
+        nightsInput.value = nights;
+
+        const total = 2500 * nights;
+        bookingTotal.textContent = "Total: KSh " + total;
+    } else {
+        nightsInput.value = "";
+        bookingTotal.textContent = "Total: KSh 0";
+    }
+}
+
+checkInInput.addEventListener("change", calculateBooking);
+checkOutInput.addEventListener("change", calculateBooking);
