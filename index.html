@@ -368,11 +368,11 @@ async function submitReview() {
             }
         ]);
 
-    if (error) {
-        console.error(error);
-        message.textContent = "Sorry, your review could not be submitted.";
-        return;
-    }
+  if (error) {
+    console.error("Supabase error:", error);
+    message.textContent = "Error: " + error.message;
+    return;
+}
 
     document.getElementById("reviewName").value = "";
     document.getElementById("reviewRating").value = "";
