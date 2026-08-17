@@ -112,3 +112,50 @@ bookingForm.addEventListener("submit", function (event) {
         "_blank"
     );
 });
+const galleryImages = [
+    "apartment.jpg",
+    "apartment1.jpg",
+    "apartment2.jpg",
+    "apartment3.jpg",
+    "apartment4.jpg",
+    "apartment5.jpg",
+    "apartment6.jpg",
+    "apartment7.jpg",
+    "bathroom.jpg"
+];
+
+let currentImage = 0;
+
+function openLightbox(index) {
+    currentImage = index;
+
+    document.getElementById("lightboxImage").src =
+        galleryImages[currentImage];
+
+    document.getElementById("lightbox").classList.add("active");
+}
+
+function closeLightbox() {
+    document.getElementById("lightbox").classList.remove("active");
+}
+
+function changeImage(direction) {
+    currentImage += direction;
+
+    if (currentImage < 0) {
+        currentImage = galleryImages.length - 1;
+    }
+
+    if (currentImage >= galleryImages.length) {
+        currentImage = 0;
+    }
+
+    document.getElementById("lightboxImage").src =
+        galleryImages[currentImage];
+}
+
+document.getElementById("lightbox").addEventListener("click", function(event) {
+    if (event.target === this) {
+        closeLightbox();
+    }
+});
