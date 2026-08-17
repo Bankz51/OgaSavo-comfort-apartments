@@ -82,11 +82,11 @@ p {
     gap: 25px;
     align-items: center;
 }
-
 .nav-links a {
     color: white;
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
