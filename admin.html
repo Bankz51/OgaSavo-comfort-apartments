@@ -1,1 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OgaSavo Admin</title>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f7f5ef;
+            color: #111;
+        }
+
+        .admin-container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .login-box,
+        .dashboard {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        h1,
+        h2 {
+            color: #071a2d;
+        }
+
+        .login-box {
+            max-width: 450px;
+            margin: 80px auto;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 13px 22px;
+            border: none;
+            border-radius: 25px;
+            background: #d6a62a;
+            color: #111;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .logout {
+            float: right;
+            background: #111;
+            color: white;
+        }
+
+        .review {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f6f0;
+            border-radius: 15px;
+        }
+
+        .stars {
+            color: #d6a62a;
+            font-size: 20px;
+        }
+
+        .approve {
+            background: #16803c;
+            color: white;
+            margin-right: 8px;
+        }
+
+        .delete {
+            background: #b42318;
+            color: white;
+        }
+
+        #message {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="admin-container">
+
+    <div id="loginBox" class="login-box">
+        <h1>OgaSavo Admin</h1>
+        <p>Sign in to manage guest reviews.</p>
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Admin email"
+        >
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Password"
+        >
+
+        <button onclick="login()">Login</button>
+
+        <p id="loginMessage"></p>
+    </div>
+
+    <div id="dashboard" class="dashboard" style="display:none;">
+
+        <button class="logout" onclick="logout()">Logout</button>
+
+        <h1>Guest Reviews</h1>
+        <p>Approve or delete guest reviews.</p>
+
+        <div id="reviewList">
+            Loading reviews...
+        </div>
+
+        <p id="message"></p>
+
+    </div>
+
+</div>
+
+<script>
+
+const SUPABASE_URL = "https://ovefnpllavbyjmfckxhw.supabase.co";
+
+const SUPABASE_KEY = "sb_publishable_XoYquWqdNy9vzH2LhqAmSg_dTfsBR4l";
+
+const supabaseClient = supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+async function login() {
+
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+
+    const loginMessage = document.getElementById("loginMessage");
+
+    if (!email || !password) {
+        loginMessage.textContent = "Enter your email and password.";
+        return;
+    }
+
+    loginMessage.textContent = "Logging in...";
+
+    const { error } = await supabaseClient.auth.signInWithPassword({
+        email: email,
+        password: password
+    });
+
+    if (error) {
+        loginMessage.textContent = error.message;
+        return;
+    }
+
+    showDashboard();
+}
+
+
+async function showDashboard() {
+
+    document.getElementById("loginBox").style.display = "none";
+    document.getElementById("dashboard").style.display = "block";
+
+    loadReviews();
+}
+
+
+async function loadReviews() {
+
+    const { data, error } = await supabaseClient
+        .from("reviews")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+    const reviewList = document.getElementById("reviewList");
+
+    if (error) {
+        reviewList.innerHTML = "<p>Error loading reviews.</p>";
+        console.error(error);
+        return;
+    }
+
+    if (!data || data.length === 0) {
+        reviewList.innerHTML = "<p>No reviews found.</p>";
+        return;
+    }
+
+    reviewList.innerHTML = data.map(review => `
+
+        <div class="review">
+
+            <h3>${escapeHTML(review.name)}</h3>
+
+            <div class="stars">
+                ${"★".repeat(review.rating)}
+                ${"☆".repeat(5 - review.rating)}
+            </div>
+
+            <p>${escapeHTML(review.review)}</p>
+
+            <p>
+                Status:
+                <strong>
+                    ${review.approved ? "Approved" : "Pending"}
+                </strong>
+            </p>
+
+            ${
+                !review.approved
+                ? `<button class="approve"
+                    onclick="approveReview('${review.id}')">
+                    Approve
+                   </button>`
+                : ""
+            }
+
+            <button class="delete"
+                onclick="deleteReview('${review.id}')">
+                Delete
+            </button>
+
+        </div>
+
+    `).join("");
+}
+
+
+async function approveReview(id) {
+
+    const { error } = await supabaseClient
+        .from("reviews")
+        .update({ approved: true })
+        .eq("id", id);
+
+    if (error) {
+        alert("Could not approve review.");
+        console.error(error);
+        return;
+    }
+
+    loadReviews();
+}
+
+
+async function deleteReview(id) {
+
+    if (!confirm("Delete this review permanently?")) {
+        return;
+    }
+
+    const { error } = await supabaseClient
+        .from("reviews")
+        .delete()
+        .eq("id", id);
+
+    if (error) {
+        alert("Could not delete review.");
+        console.error(error);
+        return;
+    }
+
+    loadReviews();
+}
+
+
+async function logout() {
+
+    await supabaseClient.auth.signOut();
+
+    document.getElementById("dashboard").style.display = "none";
+    document.getElementById("loginBox").style.display = "block";
+}
+
+
+function escapeHTML(text) {
+
+    const div = document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+}
+
+
+async function checkSession() {
+
+    const { data } = await supabaseClient.auth.getSession();
+
+    if (data.session) {
+        showDashboard();
+    }
+
+}
+
+
+checkSession();
+
+</script>
+
+</body>
+</html>
