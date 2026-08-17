@@ -573,6 +573,14 @@ footer p {
     .gallery h2 {
         font-size: 30px;
     }
+    .why-stay-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .why-stay {
+        padding: 60px 20px;
+    }
 }
 /* PREMIUM BOOKING SECTION */
 
