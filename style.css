@@ -677,6 +677,18 @@ footer p {
     .price-box {
         padding: 25px 20px;
     }
+    .details-grid,
+    .why-stay-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        width: 100%;
+    }
+
+    .details-grid > div,
+    .why-stay-grid > div {
+        width: 100%;
+        box-sizing: border-box;
+    }
 }
 /* PREMIUM BOOKING SECTION */
 
