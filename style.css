@@ -513,9 +513,8 @@ button:hover,
     transform: translateY(-2px);
 }
 
-/* FOOTER */
 footer {
-    background: #071a2d;
+    background: #000000;
     color: white;
     text-align: center;
     padding: 50px 20px;
@@ -524,10 +523,12 @@ footer {
 footer h3 {
     color: #d6a62a;
     font-size: 25px;
+    margin-bottom: 12px;
 }
 
 footer p {
     color: #ddd;
+    margin: 8px 0;
 }
 
 /* MAP - READY FOR NEXT STEP */
