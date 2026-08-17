@@ -154,13 +154,15 @@ button,
     font-weight: bold;
     border-radius: 30px;
     cursor: pointer;
-    transition: 0.3s;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.25);
 }
 
 button:hover,
 .book-now:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
     background: #f0c34d;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 
 /* AMENITIES */
