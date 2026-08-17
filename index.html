@@ -213,19 +213,46 @@
         </div>
     </div>
 </section>
-	<section class="reviews">
+	<section class="reviews" id="reviews">
 
     <h2>Guest Reviews</h2>
 
-    <div class="review-card">
-        <div class="stars">★★★★★</div>
+    <div id="reviewList">
+        <p>Loading reviews...</p>
+    </div>
 
-        <p>
-            We value every guest's experience. Genuine guest reviews
-            will appear here as our guests share their experiences.
-        </p>
+    <div class="review-form">
+        <h3>Share Your Experience</h3>
 
-        <h4>OgaSavo Comfort Apartments</h4>
+        <input
+            type="text"
+            id="reviewName"
+            placeholder="Your name"
+            maxlength="50"
+            required
+        >
+
+        <select id="reviewRating" required>
+            <option value="">Choose a rating</option>
+            <option value="5">★★★★★ — Excellent</option>
+            <option value="4">★★★★☆ — Very Good</option>
+            <option value="3">★★★☆☆ — Good</option>
+            <option value="2">★★☆☆☆ — Fair</option>
+            <option value="1">★☆☆☆☆ — Poor</option>
+        </select>
+
+        <textarea
+            id="reviewText"
+            placeholder="Write your review..."
+            maxlength="500"
+            required
+        ></textarea>
+
+        <button type="button" onclick="submitReview()">
+            Submit Review
+        </button>
+
+        <p id="reviewMessage"></p>
     </div>
 
 </section>
