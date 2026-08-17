@@ -117,7 +117,7 @@ p {
 }
 
 .hero img {
-    width: 180px;
+    width: 150px;
     height: auto;
     object-fit: contain;
     margin: 0 auto 20px;
@@ -527,6 +527,24 @@ footer p {
         display: block;
         width: fit-content;
         margin: 10px auto 0;
+    }
+
+    .navbar {
+        padding: 8px 3%;
+        gap: 10px;
+    }
+
+    .logo img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .nav-links {
+        gap: 12px;
+    }
+
+    .nav-links a {
+        font-size: 13px;
     }
 }
 /* PREMIUM BOOKING SECTION */
