@@ -1183,3 +1183,42 @@ footer p {
     max-width: 100%;
     box-sizing: border-box;
 }
+@media (max-width: 768px) {
+
+    #bookingForm {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 20px 12px;
+        box-sizing: border-box;
+    }
+
+    #bookingForm label {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        text-align: left;
+    }
+
+    #bookingForm input,
+    #bookingForm select {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        font-size: 15px;
+    }
+
+    #bookingForm input[type="date"] {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        padding: 12px 8px;
+        font-size: 14px;
+        box-sizing: border-box;
+        appearance: auto;
+        -webkit-appearance: auto;
+    }
+
+}
