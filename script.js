@@ -3,7 +3,6 @@ document.addEventListener("click", function (event) {
         const confirmBooking = confirm(
             "Would you like to contact OgaSavo Comfort Apartments on WhatsApp to book your stay?"
         );
-
         if (confirmBooking) {
             window.open(
                 "https://wa.me/254759651705?text=Hello%20OgaSavo%20Comfort%20Apartments,%20I%20would%20like%20to%20book%20a%20stay.",
@@ -117,15 +116,21 @@ const total = nightlyPrice * nights;
     );
 });
 const galleryImages = [
-    "apartment.jpg",
-    "apartment1.jpg",
-    "apartment2.jpg",
-    "apartment3.jpg",
-    "apartment4.jpg",
-    "apartment5.jpg",
-    "apartment6.jpg",
-    "apartment7.jpg",
-    "bathroom.jpg"
+    "Studio1.jpg",
+    "Partition-room.jpg",
+    "Partition-livingroom.jpg",
+    "Partition-livingroom2.jpg",
+    "Bathroom1.jpg",
+    "Bathroom2.jpg",
+    "Elevator.jpg",
+    "Frontview.jpg",
+    "Hallway.jpg",
+    "Kitchen1.jpg",
+    "Kitchen2.jpg",
+    "Parking.jpg",
+    "Rooftop1.jpg",
+    "Rooftop2.jpg",
+    "Rooftop3.jpg"
 ];
 
 let currentImage = 0;
