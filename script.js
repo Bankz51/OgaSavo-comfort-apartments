@@ -133,11 +133,11 @@ const galleryImages = [
     "reception.jpg",
     "elevator.jpeg",
     "hallway.png",
-    "parking.jpg",
+    "parking.png",
     "frontview.jpeg",
     "rooftop1.jpeg",
     "rooftop2.jpg",
-    "rooftop3.jpg"
+    "rooftop3.jpeg"
 ];
 
 let currentImage = 0;
