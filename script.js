@@ -49,43 +49,39 @@ const guestsInput = document.getElementById("guests");
 const roomTypeInput = document.getElementById("roomType");
 
 function calculateBooking() {
-    if (!checkInInput.value || !checkOutInput.value) {
+    const checkIn = document.getElementById("checkIn").value;
+    const checkOut = document.getElementById("checkOut").value;
+    const nightsInput = document.getElementById("nights");
+    const bookingTotal = document.getElementById("bookingTotal");
+    const roomTypeInput = document.getElementById("roomType");
+
+    if (!checkIn || !checkOut) {
         nightsInput.value = "";
         bookingTotal.textContent = "Total: KSh 0";
         return;
     }
 
-    const checkIn = new Date(checkInInput.value + "T00:00:00");
-    const checkOut = new Date(checkOutInput.value + "T00:00:00");
+    const start = new Date(checkIn + "T00:00:00");
+    const end = new Date(checkOut + "T00:00:00");
 
-    const difference = checkOut - checkIn;
     const nights = Math.round(
-        difference / (1000 * 60 * 60 * 24)
+        (end - start) / (1000 * 60 * 60 * 24)
     );
 
-    if (nights > 0) {
-        // Show number of nights
-        nightsInput.value = nights;
-
-        // Get selected room price
-        const nightlyPrice = Number(roomTypeInput.value) || 0;
-
-        // Update displayed nightly price
-        if (nightlyPrice > 0) {
-            document.getElementById("nightlyPrice").textContent =
-                "KSh " + nightlyPrice.toLocaleString() + " per night";
-        }
-
-        // Calculate total
-        const total = nightlyPrice * nights;
-
-        bookingTotal.textContent =
-            "Total: KSh " + total.toLocaleString();
-
-    } else {
+    if (nights <= 0) {
         nightsInput.value = "";
         bookingTotal.textContent = "Total: KSh 0";
+        return;
     }
+
+    nightsInput.value = nights;
+
+    const price = Number(roomTypeInput.value) || 0;
+    const total = price * nights;
+
+    bookingTotal.textContent =
+        "Total: KSh " + total.toLocaleString();
+}
 }
 checkInInput.addEventListener("change", calculateBooking);
 checkOutInput.addEventListener("change", calculateBooking);
