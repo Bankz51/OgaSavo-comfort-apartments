@@ -357,6 +357,21 @@ button:hover,
     border-color: #d6a62a;
     box-shadow: 0 0 0 2px rgba(214, 166, 42, 0.15);
 }
+.room-selection {
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+.room-selection label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.room-selection-note {
+    margin: 0 0 10px;
+    color: #666;
+    font-size: 14px;
+}
 /* DETAILS */
 .details {
     padding: 80px 20px;
