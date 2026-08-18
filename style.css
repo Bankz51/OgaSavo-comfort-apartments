@@ -414,11 +414,19 @@ button:hover,
     font-weight: normal;
 }
 .details-grid {
-    max-width: 1100px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    max-width: 900px;
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.details-grid > div {
+    width: 100%;
+    max-width: 380px;
+}
 }
 .details-grid > div {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
