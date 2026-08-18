@@ -59,22 +59,34 @@ function calculateBooking() {
     const checkOut = new Date(checkOutInput.value + "T00:00:00");
 
     const difference = checkOut - checkIn;
-    const nights = Math.round(difference / (1000 * 60 * 60 * 24));
+    const nights = Math.round(
+        difference / (1000 * 60 * 60 * 24)
+    );
 
     if (nights > 0) {
+        // Show number of nights
         nightsInput.value = nights;
 
-       const nightlyPrice = Number(roomTypeInput.value) || 0;
-       document.getElementById("nightlyPrice").textContent =
-    "KSh " + nightlyPrice.toLocaleString() + " per night";
-const total = nightlyPrice * nights;
-        bookingTotal.textContent = "Total: KSh " + total;
+        // Get selected room price
+        const nightlyPrice = Number(roomTypeInput.value) || 0;
+
+        // Update displayed nightly price
+        if (nightlyPrice > 0) {
+            document.getElementById("nightlyPrice").textContent =
+                "KSh " + nightlyPrice.toLocaleString() + " per night";
+        }
+
+        // Calculate total
+        const total = nightlyPrice * nights;
+
+        bookingTotal.textContent =
+            "Total: KSh " + total.toLocaleString();
+
     } else {
         nightsInput.value = "";
         bookingTotal.textContent = "Total: KSh 0";
     }
 }
-
 checkInInput.addEventListener("change", calculateBooking);
 checkOutInput.addEventListener("change", calculateBooking);
 roomTypeInput.addEventListener("change", calculateBooking);
