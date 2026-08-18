@@ -1154,3 +1154,11 @@ footer p {
         box-sizing: border-box;
     }
 }
+.property-video {
+    text-align: left;
+}
+
+.property-video h3 {
+    text-align: left;
+    margin-bottom: 15px;
+}
