@@ -911,3 +911,11 @@ footer p {
     display: block;
     margin: 10px auto 0;
 }
+/* CENTER BOOKING BUTTON */
+#bookingForm button {
+    display: block;
+    width: 80%;
+    max-width: 300px;
+    margin: 15px auto 0;
+    text-align: center;
+}
