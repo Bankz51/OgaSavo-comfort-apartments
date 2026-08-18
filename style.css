@@ -332,8 +332,11 @@ button:hover,
 }
 
 #bookingForm button {
-    width: 100%;
-    margin-top: 10px;
+    width: 80%;
+    max-width: 300px;
+    margin: 10px auto 0;
+    display: block;
+    text-align: center;
 }
 
 #bookingTotal {
@@ -910,12 +913,4 @@ footer p {
 #bookingForm button {
     display: block;
     margin: 10px auto 0;
-}
-/* CENTER BOOKING BUTTON */
-#bookingForm button {
-    display: block;
-    width: 80%;
-    max-width: 300px;
-    margin: 15px auto 0;
-    text-align: center;
 }
