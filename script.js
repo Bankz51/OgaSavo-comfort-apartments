@@ -78,6 +78,14 @@ const total = nightlyPrice * nights;
 checkInInput.addEventListener("change", calculateBooking);
 checkOutInput.addEventListener("change", calculateBooking);
 roomTypeInput.addEventListener("change", calculateBooking);
+roomTypeInput.addEventListener("change", function () {
+    const price = Number(roomTypeInput.value) || 0;
+
+    document.getElementById("nightlyPrice").textContent =
+        price > 0
+            ? "KSh " + price.toLocaleString() + " per night"
+            : "Select an accommodation";
+});
 
 bookingForm.addEventListener("submit", function (event) {
     event.preventDefault();
