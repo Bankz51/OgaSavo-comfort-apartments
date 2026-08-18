@@ -12,10 +12,10 @@ document.addEventListener("click", function (event) {
     }
 });
 const bookButton = document.getElementById("bookNow");
-bookButton.textContent = "Reserve Now";
-const apartmentPrice = "KSh 2,500";
-document.getElementById("nightlyPrice").textContent = apartmentPrice + " per night";
-document.getElementById("displayPrice").textContent = apartmentPrice;
+
+if (bookButton) {
+    bookButton.textContent = "Reserve Now";
+}
 function testBooking() {
     const guestName = prompt("What is your name?");
     
