@@ -1162,3 +1162,28 @@ footer p {
     text-align: left;
     margin-bottom: 15px;
 }
+@media (max-width: 768px) {
+
+    #bookingForm {
+        width: 100%;
+        max-width: 100%;
+        padding: 20px 15px;
+        box-sizing: border-box;
+    }
+
+    #bookingForm input[type="date"] {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        padding: 12px 10px;
+        font-size: 15px;
+    }
+
+}
+
+#bookingForm input,
+#bookingForm select {
+    max-width: 100%;
+    box-sizing: border-box;
+}
