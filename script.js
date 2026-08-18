@@ -89,7 +89,8 @@ bookingForm.addEventListener("submit", function (event) {
     const checkOut = checkOutInput.value;
     const nights = Number(nightsInput.value);
     const guests = Number(guestsInput.value);
-    const total = 2500 * nights;
+   const nightlyPrice = Number(roomTypeInput.value) || 0;
+const total = nightlyPrice * nights;
 
     if (nights <= 0) {
         alert("Please select a valid check-in and check-out date.");
