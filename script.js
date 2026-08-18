@@ -1,12 +1,12 @@
 document.addEventListener("click", function (event) {
    if (event.target.id === "bookNow" || event.target.id === "bookNow2" || event.target.id === "bookNowTop" || event.target.id === "bookNowHero") {
         const confirmBooking = confirm(
-            "Would you like to contact Bankz Comfort Apartments on WhatsApp to book your stay?"
+            "Would you like to contact OgaSavo Comfort Apartments on WhatsApp to book your stay?"
         );
 
         if (confirmBooking) {
             window.open(
-                "https://wa.me/254759651705?text=Hello%20Bankz%20Comfort%20Apartments,%20I%20would%20like%20to%20book%20a%20stay.",
+                "https://wa.me/254759651705?text=Hello%20OgaSavo%20Comfort%20Apartments,%20I%20would%20like%20to%20book%20a%20stay.",
                 "_blank"
             );
         }
@@ -97,7 +97,7 @@ bookingForm.addEventListener("submit", function (event) {
     }
 
     const message =
-        "Hello Bankz Comfort Apartments,%0A%0A" +
+        "Hello OgaSavo Comfort Apartments,%0A%0A" +
         "I would like to make a booking.%0A%0A" +
         "Name: " + encodeURIComponent(name) + "%0A" +
         "Phone: " + encodeURIComponent(phone) + "%0A" +
