@@ -310,7 +310,22 @@ button:hover,
     color: #071a2d;
     font-size: 20px;
 }
-
+#bookingForm select {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    background: white;
+    color: #071a2d;
+    cursor: pointer;
+}
+#bookingForm select:focus,
+#bookingForm input:focus {
+    outline: none;
+    border-color: #d6a62a;
+    box-shadow: 0 0 0 2px rgba(214, 166, 42, 0.15);
+}
 /* DETAILS */
 .details {
     padding: 80px 20px;
