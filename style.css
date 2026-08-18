@@ -303,8 +303,8 @@ button:hover,
 .booking h2 {
     font-size: 36px;
     color: #071a2d;
+    text-align: center;
 }
-
 #bookingForm {
     max-width: 520px;
     margin: 30px auto;
