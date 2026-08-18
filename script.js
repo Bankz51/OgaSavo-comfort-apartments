@@ -41,31 +41,31 @@ const checkInInput = document.getElementById("checkIn");
 const checkOutInput = document.getElementById("checkOut");
 const nightsInput = document.getElementById("nights");
 const bookingTotal = document.getElementById("bookingTotal");
+const roomTypeInput = document.getElementById("roomType");
 
 const bookingForm = document.getElementById("bookingForm");
 const guestNameInput = document.getElementById("guestName");
 const guestPhoneInput = document.getElementById("guestPhone");
 const guestsInput = document.getElementById("guests");
-const roomTypeInput = document.getElementById("roomType");
 
 function calculateBooking() {
-    const checkIn = document.getElementById("checkIn").value;
-    const checkOut = document.getElementById("checkOut").value;
-    const nightsInput = document.getElementById("nights");
-    const bookingTotal = document.getElementById("bookingTotal");
-    const roomTypeInput = document.getElementById("roomType");
 
-    if (!checkIn || !checkOut) {
+    const checkInValue = checkInInput.value;
+    const checkOutValue = checkOutInput.value;
+
+    if (!checkInValue || !checkOutValue) {
         nightsInput.value = "";
         bookingTotal.textContent = "Total: KSh 0";
         return;
     }
 
-    const start = new Date(checkIn + "T00:00:00");
-    const end = new Date(checkOut + "T00:00:00");
+    const checkIn = new Date(checkInValue + "T00:00:00");
+    const checkOut = new Date(checkOutValue + "T00:00:00");
 
-    const nights = Math.round(
-        (end - start) / (1000 * 60 * 60 * 24)
+    const difference = checkOut.getTime() - checkIn.getTime();
+
+    const nights = Math.floor(
+        difference / (1000 * 60 * 60 * 24)
     );
 
     if (nights <= 0) {
@@ -76,65 +76,73 @@ function calculateBooking() {
 
     nightsInput.value = nights;
 
-    const price = Number(roomTypeInput.value) || 0;
-    const total = price * nights;
+    const nightlyPrice = Number(roomTypeInput.value) || 0;
+
+    document.getElementById("nightlyPrice").textContent =
+        nightlyPrice > 0
+            ? "KSh " + nightlyPrice.toLocaleString() + " per night"
+            : "Select an accommodation";
+
+    const total = nightlyPrice * nights;
 
     bookingTotal.textContent =
         "Total: KSh " + total.toLocaleString();
 }
-}
+
+
 checkInInput.addEventListener("change", calculateBooking);
 checkOutInput.addEventListener("change", calculateBooking);
-
-checkInInput.addEventListener("input", calculateBooking);
-checkOutInput.addEventListener("input", calculateBooking);
 roomTypeInput.addEventListener("change", calculateBooking);
-roomTypeInput.addEventListener("change", function () {
-    const price = Number(roomTypeInput.value) || 0;
 
-    document.getElementById("nightlyPrice").textContent =
-        price > 0
-            ? "KSh " + price.toLocaleString() + " per night"
-            : "Select an accommodation";
-});
 
-bookingForm.addEventListener("submit", function (event) {
+bookingForm.addEventListener("submit", function(event) {
+
     event.preventDefault();
 
     calculateBooking();
 
-    const name = guestNameInput.value;
-    const phone = guestPhoneInput.value;
+    const name = guestNameInput.value.trim();
+    const phone = guestPhoneInput.value.trim();
     const checkIn = checkInInput.value;
     const checkOut = checkOutInput.value;
     const nights = Number(nightsInput.value);
     const guests = Number(guestsInput.value);
-   const nightlyPrice = Number(roomTypeInput.value) || 0;
-const total = nightlyPrice * nights;
+    const nightlyPrice = Number(roomTypeInput.value);
+
+    if (!roomTypeInput.value) {
+        alert("Please select your accommodation.");
+        return;
+    }
 
     if (nights <= 0) {
         alert("Please select a valid check-in and check-out date.");
         return;
     }
 
+    const total = nightlyPrice * nights;
+
+    const roomName =
+        nightlyPrice === 3000
+            ? "Partition Room"
+            : "Studio Apartment";
+
     const message =
         "Hello OgaSavo Comfort Apartments,%0A%0A" +
         "I would like to make a booking.%0A%0A" +
+        "Accommodation: " + encodeURIComponent(roomName) + "%0A" +
         "Name: " + encodeURIComponent(name) + "%0A" +
         "Phone: " + encodeURIComponent(phone) + "%0A" +
         "Check-in: " + encodeURIComponent(checkIn) + "%0A" +
         "Check-out: " + encodeURIComponent(checkOut) + "%0A" +
         "Nights: " + nights + "%0A" +
         "Guests: " + guests + "%0A" +
-       "Price per night: KSh " + nightlyPrice.toLocaleString() + "%0A" +
-        "Total: KSh " + total;
+        "Price per night: KSh " + nightlyPrice.toLocaleString() + "%0A" +
+        "Total: KSh " + total.toLocaleString();
 
-    const whatsappNumber = "254748893599";
+    const whatsappURL =
+        "https://wa.me/254759651705?text=" + message;
 
-    window.open(
-        "https://wa.me/" + 254759651705 + "?text=" + message,
-        "_blank"
-    );
+    window.open(whatsappURL, "_blank");
 });
 const galleryImages = [
     "studio1.jpg",
