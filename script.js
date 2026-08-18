@@ -5,7 +5,7 @@ document.addEventListener("click", function (event) {
         );
         if (confirmBooking) {
             window.open(
-                "https://wa.me/254759651705?text=Hello%20OgaSavo%20Comfort%20Apartments,%20I%20would%20like%20to%20book%20a%20stay.",
+                "https://wa.me/254748893599?text=Hello%20OgaSavo%20Comfort%20Apartments,%20I%20would%20like%20to%20book%20a%20stay.",
                 "_blank"
             );
         }
@@ -140,7 +140,7 @@ bookingForm.addEventListener("submit", function(event) {
         "Total: KSh " + total.toLocaleString();
 
     const whatsappURL =
-        "https://wa.me/254759651705?text=" + message;
+        "https://wa.me/254748893599?text=" + message;
 
     window.open(whatsappURL, "_blank");
 });
