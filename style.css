@@ -1133,14 +1133,17 @@ footer p {
     .gallery-grid img {
         height: 220px;
     }
-@media (max-width: 768px) {
-    .hero .tagline {
-        white-space: nowrap;
-        font-size: 14px;
-    }
-}
     #bookingForm {
         padding: 18px;
     }
 
+}
+@media (max-width: 768px) {
+    .hero .tagline {
+        white-space: nowrap;
+        font-size: 11px;
+        letter-spacing: 0;
+        width: 100%;
+        text-align: center;
+    }
 }
