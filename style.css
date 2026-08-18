@@ -1141,7 +1141,7 @@ footer p {
 @media (max-width: 768px) {
     .hero .tagline {
         white-space: nowrap;
-        font-size: 11px;
+        font-size: 10px;
         letter-spacing: 0;
         width: 100%;
         text-align: center;
