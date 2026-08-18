@@ -131,7 +131,7 @@ const galleryImages = [
     "bathroom2.jpg",
     "bathroom3.jpg",
     "reception.jpg",
-    "elevator.jpg",
+    "elevator.jpeg",
     "hallway.png",
     "parking.jpg",
     "frontview.jpeg",
