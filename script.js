@@ -89,6 +89,9 @@ function calculateBooking() {
 }
 checkInInput.addEventListener("change", calculateBooking);
 checkOutInput.addEventListener("change", calculateBooking);
+
+checkInInput.addEventListener("input", calculateBooking);
+checkOutInput.addEventListener("input", calculateBooking);
 roomTypeInput.addEventListener("change", calculateBooking);
 roomTypeInput.addEventListener("change", function () {
     const price = Number(roomTypeInput.value) || 0;
