@@ -65,6 +65,8 @@ function calculateBooking() {
         nightsInput.value = nights;
 
        const nightlyPrice = Number(roomTypeInput.value) || 0;
+       document.getElementById("nightlyPrice").textContent =
+    "KSh " + nightlyPrice.toLocaleString() + " per night";
 const total = nightlyPrice * nights;
         bookingTotal.textContent = "Total: KSh " + total;
     } else {
