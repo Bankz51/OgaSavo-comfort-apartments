@@ -115,10 +115,10 @@ const total = nightlyPrice * nights;
         "Check-out: " + encodeURIComponent(checkOut) + "%0A" +
         "Nights: " + nights + "%0A" +
         "Guests: " + guests + "%0A" +
-        "Price per night: KSh 2,500%0A" +
+       "Price per night: KSh " + nightlyPrice.toLocaleString() + "%0A" +
         "Total: KSh " + total;
 
-    const whatsappNumber = "254759651705";
+    const whatsappNumber = "254748893599";
 
     window.open(
         "https://wa.me/" + 254759651705 + "?text=" + message,
