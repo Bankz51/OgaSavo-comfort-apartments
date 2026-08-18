@@ -125,7 +125,7 @@ const galleryImages = [
     "partition-livingroom.jpg",
     "partition-livingroom2.jpg",
     "kitchen1.jpg",
-    "kitchen2.jpg",
+    "kitchen2.jpeg",
     "kitchen3.jpg",
     "bathroom1.jpg",
     "bathroom2.jpg",
@@ -134,8 +134,8 @@ const galleryImages = [
     "elevator.jpg",
     "hallway.png",
     "parking.jpg",
-    "frontview.jpg",
-    "rooftop1.jpg",
+    "frontview.jpeg",
+    "rooftop1.jpeg",
     "rooftop2.jpg",
     "rooftop3.jpg"
 ];
