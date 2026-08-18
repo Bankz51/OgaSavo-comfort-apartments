@@ -47,6 +47,7 @@ const bookingForm = document.getElementById("bookingForm");
 const guestNameInput = document.getElementById("guestName");
 const guestPhoneInput = document.getElementById("guestPhone");
 const guestsInput = document.getElementById("guests");
+const roomTypeInput = document.getElementById("roomType");
 
 function calculateBooking() {
     if (!checkInInput.value || !checkOutInput.value) {
@@ -64,7 +65,8 @@ function calculateBooking() {
     if (nights > 0) {
         nightsInput.value = nights;
 
-        const total = 2500 * nights;
+       const nightlyPrice = Number(roomTypeInput.value) || 0;
+const total = nightlyPrice * nights;
         bookingTotal.textContent = "Total: KSh " + total;
     } else {
         nightsInput.value = "";
@@ -74,6 +76,7 @@ function calculateBooking() {
 
 checkInInput.addEventListener("change", calculateBooking);
 checkOutInput.addEventListener("change", calculateBooking);
+roomTypeInput.addEventListener("change", calculateBooking);
 
 bookingForm.addEventListener("submit", function (event) {
     event.preventDefault();
