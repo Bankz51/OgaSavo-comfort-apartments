@@ -237,7 +237,25 @@ button:hover,
 .gallery h2 {
     font-size: 36px;
     color: #071a2d;
-    margin-bottom: 40px;
+    margin-bottom: 15px;
+}
+
+.gallery-intro {
+    max-width: 650px;
+    margin: 0 auto 45px;
+    color: #555;
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+.gallery-category {
+    max-width: 1100px;
+    margin: 50px auto 20px;
+    color: #071a2d;
+    font-size: 25px;
+    text-align: left;
+    border-left: 5px solid #d6a62a;
+    padding-left: 15px;
 }
 
 .gallery-grid {
@@ -262,13 +280,26 @@ button:hover,
     transform: scale(1.03);
     box-shadow: 0 10px 25px rgba(0,0,0,0.25);
 }
-/* BOOKING */
-.booking {
-    padding: 80px 20px;
-    text-align: center;
-    background: #f5f1e8;
+
+/* PROPERTY VIDEO */
+.property-video {
+    max-width: 900px;
+    margin: 60px auto 0;
 }
 
+.property-video h3 {
+    color: #071a2d;
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+.property-video video {
+    width: 100%;
+    max-height: 600px;
+    object-fit: cover;
+    border-radius: 18px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+}
 .booking h2 {
     font-size: 36px;
     color: #071a2d;
