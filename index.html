@@ -203,12 +203,10 @@
     <input type="text" id="guestName" placeholder="Full Name" required>
 
     <input type="tel" id="guestPhone" placeholder="Phone Number" required>
-
-    <label for="checkIn">Check-in Date</label>
-<input type="date" id="checkIn" required>
-
+<label for="checkIn">Check-in Date</label>
+<input type="date" id="checkIn" required onchange="calculateBooking()">
 <label for="checkOut">Check-out Date</label>
-<input type="date" id="checkOut" required>
+<input type="date" id="checkOut" required onchange="calculateBooking()">
 
 <label for="nights">Number of Nights</label>
 <input type="text" id="nights" placeholder="Calculated automatically" readonly>
