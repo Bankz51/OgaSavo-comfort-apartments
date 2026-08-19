@@ -634,6 +634,11 @@ function showGallery() {
 function hideGallery() {
     document.querySelector(".gallery-hidden").style.display = "none";
     document.querySelector(".gallery-preview").style.display = "block";
+
+    document.getElementById("gallery").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
 }
 
 </script>
