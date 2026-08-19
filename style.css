@@ -1348,47 +1348,72 @@ footer p {
     right: auto;
 }
 body.light-mode {
-    background: #eeeae2;
-    color: #1a1a1a;
+    background: #d8d2c4;
+    color: #171717;
 }
 
 /* Navbar */
 body.light-mode .navbar {
-    background: #1a1a1a;
+    background: #111;
 }
 
-/* Navigation */
+/* Menu */
 body.light-mode .nav-links {
-    background: #1a1a1a;
+    background: #111;
 }
 
 body.light-mode .nav-links a {
     color: #fff;
 }
 
-/* Sections */
+/* Main sections */
 body.light-mode section {
-    background: #eeeae2;
-    color: #1a1a1a;
+    background: #d8d2c4;
+    color: #171717;
+}
+
+/* Keep important sections dark */
+body.light-mode .hero,
+body.light-mode footer {
+    background: #111;
+    color: #fff;
 }
 
 /* Headings */
 body.light-mode h2,
 body.light-mode h3 {
-    color: #1a1a1a;
+    color: #171717;
 }
 
-/* Gallery */
+/* Cards */
+body.light-mode .review-card,
+body.light-mode .amenity {
+    background: #c4bdaf;
+    color: #171717;
+}
+
+/* Price box */
+body.light-mode .price-box {
+    background: #111;
+    color: #fff;
+}
+
+body.light-mode .price-box h3,
+body.light-mode .price-box span {
+    color: #d6a62a;
+}
+
+/* Gallery preview */
 body.light-mode .gallery-preview-overlay {
-    background: rgba(0, 0, 0, 0.35);
+    background: rgba(0, 0, 0, 0.45);
 }
 
-body.light-mode .gallery-preview-overlay span {
-    background: #d6a62a;
-    color: #000;
+/* Buttons */
+body.light-mode button {
+    border-color: #d6a62a;
 }
 
-/* Theme & menu buttons */
+/* Top controls */
 body.light-mode .theme-toggle,
 body.light-mode .menu-toggle {
     color: #fff;
@@ -1397,12 +1422,4 @@ body.light-mode .menu-toggle {
 body.light-mode .theme-toggle:hover,
 body.light-mode .menu-toggle:hover {
     color: #d6a62a;
-}
-
-/* Cards / boxes */
-body.light-mode .review-card,
-body.light-mode .amenity,
-body.light-mode .price-box {
-    background: #fff;
-    color: #1a1a1a;
 }
