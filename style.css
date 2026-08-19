@@ -1383,3 +1383,7 @@ body.light-mode .theme-toggle:hover,
 body.light-mode .menu-toggle:hover {
     color: #d6a62a;
 }
+body.light-mode .contact {
+    background: #071a2d;
+    color: #fff;
+}
