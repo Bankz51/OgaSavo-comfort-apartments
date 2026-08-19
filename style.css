@@ -1239,3 +1239,12 @@ footer p {
     color: white;
     text-decoration: none;
 }
+.menu-toggle {
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.menu-toggle:hover,
+.menu-toggle.active {
+    color: #d6a62a;
+}
