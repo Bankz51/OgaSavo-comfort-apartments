@@ -1415,3 +1415,16 @@ body.light-mode .contact p {
         opacity: 0.2;
     }
 }
+.hero {
+    animation: heroZoom 12s ease-in-out infinite alternate;
+}
+
+@keyframes heroZoom {
+    from {
+        background-size: 100%;
+    }
+
+    to {
+        background-size: 110%;
+    }
+}
