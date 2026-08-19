@@ -1315,3 +1315,30 @@ footer p {
 .gallery-preview:active {
     transform: scale(0.98);
 }
+.top-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    z-index: 1001;
+}
+
+.theme-toggle,
+.menu-toggle {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.theme-toggle:hover {
+    color: #d6a62a;
+}
+
+.menu-toggle:hover {
+    color: #d6a62a;
+}
