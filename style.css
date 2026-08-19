@@ -1387,3 +1387,12 @@ body.light-mode .contact {
     background: #071a2d;
     color: #fff;
 }
+body.light-mode .contact {
+    background: #071a2d;
+    color: #fff;
+}
+
+body.light-mode .contact h2,
+body.light-mode .contact p {
+    color: #fff;
+}
