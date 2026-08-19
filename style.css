@@ -1396,3 +1396,22 @@ body.light-mode .contact h2,
 body.light-mode .contact p {
     color: #fff;
 }
+.blinking-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #d6a62a;
+    border-radius: 50%;
+    margin-right: 7px;
+    animation: blinkDot 1.2s infinite;
+}
+
+@keyframes blinkDot {
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.2;
+    }
+}
