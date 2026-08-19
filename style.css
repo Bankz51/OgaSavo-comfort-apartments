@@ -1285,3 +1285,21 @@ footer p {
 .gallery-hidden {
     display: none;
 }
+.hide-gallery-btn {
+    display: block;
+    margin: 30px auto 10px;
+    padding: 12px 24px;
+    background: #d6a62a;
+    color: #000;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.hide-gallery-btn:hover {
+    background: #fff;
+    color: #000;
+    transform: translateY(-2px);
+}
