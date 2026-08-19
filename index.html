@@ -595,22 +595,38 @@ loadReviews();
 </script>
 	<script>
 document.addEventListener("DOMContentLoaded", function () {
+
+    /* MENU TOGGLE */
     const menuToggle = document.querySelector(".menu-toggle");
     const navLinks = document.querySelector(".nav-links");
 
-    menuToggle.addEventListener("click", function () {
-    navLinks.classList.toggle("active");
-    menuToggle.classList.toggle("active");
+    if (menuToggle && navLinks) {
+
+        menuToggle.addEventListener("click", function () {
+            navLinks.classList.toggle("active");
+            menuToggle.classList.toggle("active");
+        });
+
+        navLinks.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                navLinks.classList.remove("active");
+                menuToggle.classList.remove("active");
+            });
+        });
+    }
+
 });
 
-    navLinks.querySelectorAll("a").forEach(function (link) {
-        link.addEventListener("click", function () {
-           menuToggle.classList.remove("active");
-navLinks.classList.remove("active");
-        });
-    });
-});
-		let currentImage = 0;
+
+/* SHOW GALLERY */
+function showGallery() {
+    document.querySelector(".gallery-hidden").style.display = "block";
+    document.querySelector(".gallery-preview").style.display = "none";
+}
+
+
+/* LIGHTBOX */
+let currentImage = 0;
 
 function openLightbox(index) {
     currentImage = index;
@@ -620,7 +636,6 @@ function openLightbox(index) {
 
     document.getElementById("lightbox").classList.add("active");
 }
-
 </script>
 </body>
 </html>
