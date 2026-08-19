@@ -1303,3 +1303,15 @@ footer p {
     color: #000;
     transform: translateY(-2px);
 }
+.gallery-preview {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-preview:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+}
+
+.gallery-preview:active {
+    transform: scale(0.98);
+}
