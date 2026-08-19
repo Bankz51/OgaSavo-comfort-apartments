@@ -622,10 +622,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
 /* SHOW GALLERY */
 function showGallery() {
-    document.querySelector(".gallery-hidden").style.display = "block";
-    document.querySelector(".gallery-preview").style.display = "none";
+    const gallery = document.querySelector(".gallery-hidden");
+    const preview = document.querySelector(".gallery-preview");
+
+    if (gallery && preview) {
+        gallery.style.display = "block";
+        preview.style.display = "none";
+    }
 }
 
+function hideGallery() {
+    document.querySelector(".gallery-hidden").style.display = "none";
+    document.querySelector(".gallery-preview").style.display = "block";
+}
 
 </script>
 </body>
