@@ -608,11 +608,12 @@ footer p {
 /* MOBILE */
 @media (max-width: 768px) {
 
-    .navbar {
-        flex-direction: column;
-        gap: 15px;
-        padding: 15px;
-    }
+   .navbar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+}
 
     .nav-links {
         flex-wrap: wrap;
