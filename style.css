@@ -1342,3 +1342,8 @@ footer p {
 .menu-toggle:hover {
     color: #d6a62a;
 }
+.top-controls .menu-toggle {
+    position: static;
+    top: auto;
+    right: auto;
+}
