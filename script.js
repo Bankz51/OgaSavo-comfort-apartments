@@ -171,20 +171,20 @@ const galleryImages = [
 
 let currentImage = 0;
 
-function openLightbox(index) {
+window.openLightbox = function(index) {
     currentImage = index;
 
     document.getElementById("lightboxImage").src =
         galleryImages[currentImage];
 
     document.getElementById("lightbox").classList.add("active");
-}
+};
 
-function closeLightbox() {
+window.closeLightbox = function() {
     document.getElementById("lightbox").classList.remove("active");
-}
+};
 
-function changeImage(direction) {
+window.changeImage = function(direction) {
     currentImage += direction;
 
     if (currentImage < 0) {
@@ -197,10 +197,10 @@ function changeImage(direction) {
 
     document.getElementById("lightboxImage").src =
         galleryImages[currentImage];
-}
+};
 
 document.getElementById("lightbox").addEventListener("click", function(event) {
     if (event.target === this) {
-        closeLightbox();
+        window.closeLightbox();
     }
 });
