@@ -1494,13 +1494,13 @@ body.light-mode .contact p {
     font-size: 11px;
     margin-top: 8px;
     text-align: center;
-    opacity: 0.75;
+    color: #fff;
 }
 
 .designer-credit a {
     color: #d6a62a;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .designer-credit a:hover {
