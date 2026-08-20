@@ -8,21 +8,9 @@ html {
 
 body {
     margin: 0;
-    background: #f5f1e8;
+    background: #eeece7;
     font-family: Arial, sans-serif;
     color: #172033;
-}
-
-h1,
-h2,
-h3,
-p {
-    margin-top: 0;
-}
-
-p {
-    color: #555;
-    line-height: 1.7;
 }
 
 /* NAVIGATION */
