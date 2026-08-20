@@ -1490,3 +1490,19 @@ body.light-mode .contact p {
         transform: translateY(0);
     }
 }
+.designer-credit {
+    font-size: 11px;
+    margin-top: 8px;
+    text-align: center;
+    opacity: 0.75;
+}
+
+.designer-credit a {
+    color: #d6a62a;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.designer-credit a:hover {
+    text-decoration: underline;
+}
