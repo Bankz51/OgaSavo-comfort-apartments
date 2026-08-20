@@ -647,13 +647,13 @@ function showGallery() {
 }
 
 function hideGallery() {
-    document.querySelector(".gallery-hidden").style.display = "none";
-    document.querySelector(".gallery-preview").style.display = "block";
+    const gallery = document.querySelector(".gallery-hidden");
+    const preview = document.querySelector(".gallery-preview");
 
-    document.getElementById("gallery").scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
+    if (gallery && preview) {
+        gallery.style.display = "none";
+        preview.style.display = "block";
+    }
 }
 const themeToggle = document.getElementById("themeToggle");
 
