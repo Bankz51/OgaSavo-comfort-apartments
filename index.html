@@ -648,17 +648,18 @@ function showGallery() {
 function hideGallery() {
     const gallery = document.querySelector(".gallery-hidden");
     const preview = document.querySelector(".gallery-preview");
+    const gallerySection = document.getElementById("gallery");
 
-    // Save current position
-    const scrollPosition = window.scrollY;
+    if (gallery && preview && gallerySection) {
 
-    if (gallery && preview) {
         gallery.style.display = "none";
         preview.style.display = "block";
 
-        // Restore the exact position after the layout changes
         requestAnimationFrame(() => {
-            window.scrollTo(0, scrollPosition);
+            gallerySection.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
         });
     }
 }
