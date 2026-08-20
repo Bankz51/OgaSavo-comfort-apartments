@@ -179,6 +179,14 @@ window.openLightbox = function(index) {
 
     document.getElementById("lightbox").classList.add("active");
 };
+window.openLightbox = function(index) {
+    currentImage = index;
+
+    document.getElementById("lightboxImage").src =
+        galleryImages[currentImage];
+
+    document.getElementById("lightbox").classList.add("active");
+};
 
 window.closeLightbox = function() {
     document.getElementById("lightbox").classList.remove("active");
