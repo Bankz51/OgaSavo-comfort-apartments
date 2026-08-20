@@ -645,14 +645,21 @@ function showGallery() {
         preview.style.display = "none";
     }
 }
-
 function hideGallery() {
     const gallery = document.querySelector(".gallery-hidden");
     const preview = document.querySelector(".gallery-preview");
 
+    // Save current position
+    const scrollPosition = window.scrollY;
+
     if (gallery && preview) {
         gallery.style.display = "none";
         preview.style.display = "block";
+
+        // Restore the exact position after the layout changes
+        requestAnimationFrame(() => {
+            window.scrollTo(0, scrollPosition);
+        });
     }
 }
 const themeToggle = document.getElementById("themeToggle");
