@@ -562,6 +562,31 @@ const supabaseClient = supabase.createClient(
             <h4>${escapeHTML(item.name)}</h4>
         </div>
     `).join("");
+			const reviewsSection = document.getElementById("reviews");
+
+if (reviewsSection) {
+    const observer = new IntersectionObserver(function(entries) {
+
+        if (entries[0].isIntersecting) {
+
+            const cards = reviewsSection.querySelectorAll(".review-card");
+
+            cards.forEach(function(card, index) {
+
+                setTimeout(function() {
+                    card.classList.add("review-visible");
+                }, index * 250);
+
+            });
+
+            observer.disconnect();
+        }
+
+    }, {
+        threshold: 0.15
+    });
+
+    observer.observe(reviewsSection);
 }
 
 async function submitReview() {
