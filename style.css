@@ -1530,7 +1530,7 @@ function showGallery() {
 }
 .gallery-hidden.gallery-show {
     display: block;
-    animation: galleryAppearSlow 2.5s ease forwards;
+    animation: galleryAppearSlow 3s ease forwards;
 }
 
 @keyframes galleryAppearSlow {
