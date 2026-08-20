@@ -562,7 +562,8 @@ const supabaseClient = supabase.createClient(
             <h4>${escapeHTML(item.name)}</h4>
         </div>
     `).join("");
-			
+    }
+		
 async function submitReview() {
     const name = document.getElementById("reviewName").value.trim();
     const rating = Number(document.getElementById("reviewRating").value);
