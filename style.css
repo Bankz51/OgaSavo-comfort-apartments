@@ -1416,15 +1416,42 @@ body.light-mode .contact p {
     }
 }
 .hero {
+    position: relative;
+    overflow: hidden;
+    background-image: none !important;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("apartment1.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     animation: heroZoom 12s ease-in-out infinite alternate;
+    z-index: 0;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
 }
 
 @keyframes heroZoom {
     from {
-        background-size: 100%;
+        transform: scale(1);
     }
 
     to {
-        background-size: 110%;
+        transform: scale(1.08);
     }
 }
