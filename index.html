@@ -562,11 +562,6 @@ const supabaseClient = supabase.createClient(
             <h4>${escapeHTML(item.name)}</h4>
         </div>
     `).join("");
-			document.querySelectorAll(".review-card").forEach((card, index) => {
-    setTimeout(() => {
-        card.classList.add("review-visible");
-    }, index * 200);
-});
 }
 
 async function submitReview() {
@@ -686,29 +681,31 @@ themeToggle.addEventListener("click", function () {
 		const reviewsSection = document.getElementById("reviews");
 
 if (reviewsSection) {
-    const reviewsObserver = new IntersectionObserver(
-        function(entries) {
-            entries.forEach(function(entry) {
 
-                if (entry.isIntersecting) {
+    const reviewsObserver = new IntersectionObserver(function(entries) {
 
-                    document.querySelectorAll(".review-card").forEach(function(card, index) {
+        entries.forEach(function(entry) {
 
-                        setTimeout(function() {
-                            card.classList.add("review-visible");
-                        }, index * 200);
+            if (entry.isIntersecting) {
 
-                    });
+                const reviewCards = reviewsSection.querySelectorAll(".review-card");
 
-                    reviewsObserver.unobserve(reviewsSection);
-                }
+                reviewCards.forEach(function(card, index) {
 
-            });
-        },
-        {
-            threshold: 0.2
-        }
-    );
+                    setTimeout(function() {
+                        card.classList.add("review-visible");
+                    }, index * 250);
+
+                });
+
+                reviewsObserver.unobserve(reviewsSection);
+            }
+
+        });
+
+    }, {
+        threshold: 0.2
+    });
 
     reviewsObserver.observe(reviewsSection);
 }
