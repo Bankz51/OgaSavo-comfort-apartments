@@ -794,10 +794,11 @@ footer p {
     position: fixed;
     z-index: 9999;
     inset: 0;
-    background: rgba(0, 0, 0, 0.94);
+    background: rgba(0, 0, 0, 0.96);
     align-items: center;
     justify-content: center;
-    padding: 30px;
+    padding: 70px 80px;
+    box-sizing: border-box;
 }
 
 .lightbox.active {
@@ -805,18 +806,22 @@ footer p {
 }
 
 .lightbox-image {
-    max-width: 90%;
-    max-height: 85vh;
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: calc(100vh - 140px);
     object-fit: contain;
-    border-radius: 10px;
+    border-radius: 8px;
     box-shadow: 0 10px 40px rgba(0,0,0,0.5);
 }
 
 .lightbox-close {
     position: absolute;
-    top: 20px;
-    right: 30px;
+    top: 15px;
+    right: 25px;
     font-size: 40px;
+    line-height: 1;
     color: white;
     cursor: pointer;
     z-index: 10001;
@@ -830,19 +835,20 @@ footer p {
     background: rgba(255,255,255,0.15);
     color: white;
     border: none;
-    font-size: 35px;
-    width: 55px;
-    height: 55px;
+    font-size: 30px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     cursor: pointer;
+    z-index: 10001;
 }
 
 .lightbox-prev {
-    left: 25px;
+    left: 20px;
 }
 
 .lightbox-next {
-    right: 25px;
+    right: 20px;
 }
 
 .lightbox-prev:hover,
@@ -852,33 +858,34 @@ footer p {
 
 @media (max-width: 600px) {
     .lightbox {
-        padding: 15px;
+        padding: 60px 50px;
     }
 
     .lightbox-image {
-        max-width: 95%;
-        max-height: 80vh;
+        max-width: 100%;
+        max-height: calc(100vh - 120px);
+        border-radius: 5px;
     }
 
     .lightbox-close {
         top: 10px;
-        right: 18px;
+        right: 15px;
         font-size: 35px;
     }
 
     .lightbox-prev,
     .lightbox-next {
-        width: 45px;
-        height: 45px;
-        font-size: 25px;
+        width: 40px;
+        height: 40px;
+        font-size: 22px;
     }
 
     .lightbox-prev {
-        left: 10px;
+        left: 5px;
     }
 
     .lightbox-next {
-        right: 10px;
+        right: 5px;
     }
 }
 /* CENTER BOOKING CONTENT */
