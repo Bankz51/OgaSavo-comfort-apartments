@@ -1576,3 +1576,6 @@ function showGallery() {
         transform: translateY(0);
     }
 }
+.navbar {
+    background: #000000 !important;
+}
