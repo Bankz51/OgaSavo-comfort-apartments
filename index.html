@@ -562,6 +562,11 @@ const supabaseClient = supabase.createClient(
             <h4>${escapeHTML(item.name)}</h4>
         </div>
     `).join("");
+			document.querySelectorAll(".review-card").forEach((card, index) => {
+    setTimeout(() => {
+        card.classList.add("review-visible");
+    }, index * 200);
+});
 }
 
 async function submitReview() {
