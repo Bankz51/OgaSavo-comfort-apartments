@@ -1518,3 +1518,13 @@ body.light-mode .contact p {
 .gallery-grid img:active {
     transform: scale(0.97);
 }
+function showGallery() {
+    const gallery = document.querySelector(".gallery-hidden");
+    const preview = document.querySelector(".gallery-preview");
+
+    if (gallery && preview) {
+        gallery.style.display = "block";
+        gallery.classList.add("gallery-show");
+        preview.style.display = "none";
+    }
+}
