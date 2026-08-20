@@ -142,7 +142,7 @@ bookingForm.addEventListener("submit", function(event) {
     const whatsappURL =
         "https://wa.me/254748893599?text=" + message;
 
-    window.open(whatsappURL, "_blank");
+    window.open(whatsappURL;
 });
 const galleryImages = [
     "studio1.jpg",
