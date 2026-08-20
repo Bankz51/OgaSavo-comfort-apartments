@@ -1576,23 +1576,3 @@ function showGallery() {
         transform: translateY(0);
     }
 }
-.review-card {
-    opacity: 0;
-    transform: translateY(30px);
-}
-
-.review-card.review-visible {
-    animation: reviewAppear 1s ease forwards;
-}
-
-@keyframes reviewAppear {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
