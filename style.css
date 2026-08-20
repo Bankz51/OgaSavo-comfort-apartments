@@ -1528,3 +1528,19 @@ function showGallery() {
         preview.style.display = "none";
     }
 }
+.gallery-hidden.gallery-show {
+    display: block;
+    animation: galleryAppearSlow 2.5s ease forwards;
+}
+
+@keyframes galleryAppearSlow {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
