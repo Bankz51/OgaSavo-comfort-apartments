@@ -140,179 +140,419 @@
     </div>
 
 </div>
+    <button onclick="changeAdminEmail()">
+    Change Admin Email
+</button>
 
 <script>
 
-const SUPABASE_URL = "https://ovefnpllavbyjmfckxhw.supabase.co";
+const SUPABASE_URL =
+    "https://ovefnpllavbyjmfckxhw.supabase.co";
 
-const SUPABASE_KEY = "sb_publishable_XoYquWqdNy9vzH2LhqAmSg_dTfsBR4l";
+const SUPABASE_KEY =
+    "sb_publishable_XoYquWqdNy9vzH2LhqAmSg_dTfsBR4l";
 
-const supabaseClient = supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
 
+const supabaseClient =
+    supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+/* =========================
+   LOGIN
+========================= */
 
 async function login() {
 
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
+    const email =
+        document
+            .getElementById("email")
+            .value
+            .trim();
 
-    const loginMessage = document.getElementById("loginMessage");
+    const password =
+        document
+            .getElementById("password")
+            .value;
+
+    const loginMessage =
+        document.getElementById(
+            "loginMessage"
+        );
+
 
     if (!email || !password) {
-        loginMessage.textContent = "Enter your email and password.";
+
+        loginMessage.textContent =
+            "Enter your email and password.";
+
         return;
+
     }
 
-    loginMessage.textContent = "Logging in...";
 
-    const { error } = await supabaseClient.auth.signInWithPassword({
-        email: email,
-        password: password
-    });
+    loginMessage.textContent =
+        "Logging in...";
+
+
+    const { error } =
+        await supabaseClient.auth
+            .signInWithPassword({
+
+                email: email,
+
+                password: password
+
+            });
+
 
     if (error) {
-        loginMessage.textContent = error.message;
+
+        loginMessage.textContent =
+            error.message;
+
         return;
+
     }
 
+
     showDashboard();
+
 }
 
+
+/* =========================
+   SHOW DASHBOARD
+========================= */
 
 async function showDashboard() {
 
-    document.getElementById("loginBox").style.display = "none";
-    document.getElementById("dashboard").style.display = "block";
+    document.getElementById(
+        "loginBox"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "dashboard"
+    ).style.display = "block";
+
 
     loadReviews();
+
 }
 
+
+/* =========================
+   LOAD REVIEWS
+========================= */
 
 async function loadReviews() {
 
-    const { data, error } = await supabaseClient
-        .from("reviews")
-        .select("*")
-        .order("created_at", { ascending: false });
+    const { data, error } =
+        await supabaseClient
+            .from("reviews")
+            .select("*")
+            .order(
+                "created_at",
+                {
+                    ascending: false
+                }
+            );
 
-    const reviewList = document.getElementById("reviewList");
+
+    const reviewList =
+        document.getElementById(
+            "reviewList"
+        );
+
 
     if (error) {
-        reviewList.innerHTML = "<p>Error loading reviews.</p>";
+
+        reviewList.innerHTML =
+            "<p>Error loading reviews.</p>";
+
         console.error(error);
+
         return;
+
     }
 
-    if (!data || data.length === 0) {
-        reviewList.innerHTML = "<p>No reviews found.</p>";
+
+    if (
+        !data ||
+        data.length === 0
+    ) {
+
+        reviewList.innerHTML =
+            "<p>No reviews found.</p>";
+
         return;
+
     }
 
-    reviewList.innerHTML = data.map(review => `
 
-        <div class="review">
+    reviewList.innerHTML =
+        data.map(review => `
 
-            <h3>${escapeHTML(review.name)}</h3>
+            <div class="review">
 
-            <div class="stars">
-                ${"★".repeat(review.rating)}
-                ${"☆".repeat(5 - review.rating)}
+                <h3>
+                    ${escapeHTML(
+                        review.name
+                    )}
+                </h3>
+
+
+                <div class="stars">
+
+                    ${
+                        "★".repeat(
+                            review.rating
+                        )
+                    }
+
+                    ${
+                        "☆".repeat(
+                            5 - review.rating
+                        )
+                    }
+
+                </div>
+
+
+                <p>
+                    ${escapeHTML(
+                        review.review
+                    )}
+                </p>
+
+
+                <p>
+
+                    Status:
+
+                    <strong>
+
+                        ${
+                            review.approved
+                            ? "Approved"
+                            : "Pending"
+                        }
+
+                    </strong>
+
+                </p>
+
+
+                ${
+                    !review.approved
+
+                    ? `
+
+                        <button
+                            class="approve"
+                            onclick="approveReview('${review.id}')">
+
+                            Approve
+
+                        </button>
+
+                    `
+
+                    : ""
+                }
+
+
+                <button
+                    class="delete"
+                    onclick="deleteReview('${review.id}')">
+
+                    Delete
+
+                </button>
+
             </div>
 
-            <p>${escapeHTML(review.review)}</p>
+        `).join("");
 
-            <p>
-                Status:
-                <strong>
-                    ${review.approved ? "Approved" : "Pending"}
-                </strong>
-            </p>
-
-            ${
-                !review.approved
-                ? `<button class="approve"
-                    onclick="approveReview('${review.id}')">
-                    Approve
-                   </button>`
-                : ""
-            }
-
-            <button class="delete"
-                onclick="deleteReview('${review.id}')">
-                Delete
-            </button>
-
-        </div>
-
-    `).join("");
 }
 
+
+/* =========================
+   APPROVE REVIEW
+========================= */
 
 async function approveReview(id) {
 
-    const { error } = await supabaseClient
-        .from("reviews")
-        .update({ approved: true })
-        .eq("id", id);
+    const { error } =
+        await supabaseClient
+            .from("reviews")
+            .update({
+                approved: true
+            })
+            .eq("id", id);
+
 
     if (error) {
-        alert("Could not approve review.");
+
+        alert(
+            "Could not approve review."
+        );
+
         console.error(error);
+
         return;
+
     }
 
+
     loadReviews();
+
 }
 
+
+/* =========================
+   DELETE REVIEW
+========================= */
 
 async function deleteReview(id) {
 
-    if (!confirm("Delete this review permanently?")) {
+    if (
+        !confirm(
+            "Delete this review permanently?"
+        )
+    ) {
+
         return;
+
     }
 
-    const { error } = await supabaseClient
-        .from("reviews")
-        .delete()
-        .eq("id", id);
+
+    const { error } =
+        await supabaseClient
+            .from("reviews")
+            .delete()
+            .eq("id", id);
+
 
     if (error) {
-        alert("Could not delete review.");
+
+        alert(
+            "Could not delete review."
+        );
+
         console.error(error);
+
         return;
+
     }
 
+
     loadReviews();
+
 }
 
+
+/* =========================
+   CHANGE ADMIN EMAIL
+========================= */
+
+async function changeAdminEmail() {
+
+    const newEmail =
+        "ogasavocomfortapartments@gmail.com";
+
+
+    const { error } =
+        await supabaseClient.auth
+            .updateUser({
+
+                email: newEmail
+
+            });
+
+
+    if (error) {
+
+        alert(
+            "Could not change admin email:\n\n" +
+            error.message
+        );
+
+        console.error(error);
+
+        return;
+
+    }
+
+
+    alert(
+        "Email change requested!\n\n" +
+        "Check your email inboxes for the confirmation link."
+    );
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
 
 async function logout() {
 
     await supabaseClient.auth.signOut();
 
-    document.getElementById("dashboard").style.display = "none";
-    document.getElementById("loginBox").style.display = "block";
+
+    document.getElementById(
+        "dashboard"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "loginBox"
+    ).style.display = "block";
+
 }
 
+
+/* =========================
+   ESCAPE HTML
+========================= */
 
 function escapeHTML(text) {
 
-    const div = document.createElement("div");
+    const div =
+        document.createElement(
+            "div"
+        );
+
 
     div.textContent = text;
 
+
     return div.innerHTML;
+
 }
 
 
+/* =========================
+   CHECK SESSION
+========================= */
+
 async function checkSession() {
 
-    const { data } = await supabaseClient.auth.getSession();
+    const { data } =
+        await supabaseClient
+            .auth
+            .getSession();
+
 
     if (data.session) {
+
         showDashboard();
+
     }
 
 }
