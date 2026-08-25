@@ -1837,3 +1837,39 @@ function showGallery() {
     }
 
 }
+
+/* =========================
+   LAPTOP REVIEW CARD ONLY
+========================= */
+
+@media (min-width: 601px) {
+
+    .review-carousel-track .review-card {
+        min-height: 300px;
+        height: 300px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    .review-carousel-track .stars {
+        margin-bottom: 22px;
+    }
+
+    .review-carousel-track .review-card p {
+        margin: 0 0 22px;
+        max-width: 650px;
+        line-height: 1.8;
+    }
+
+    .review-carousel-track .review-card h4 {
+        margin: 0;
+        line-height: 1.5;
+    }
+
+}
