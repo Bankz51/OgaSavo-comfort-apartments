@@ -1088,28 +1088,28 @@ footer p {
         text-align: center;
     }
 
- /* =====================================================
-   OGASAVO — CUSTOMER REVIEW CAROUSEL
-===================================================== */
+/* =========================
+   OGASAVO REVIEW CAROUSEL
+========================= */
+
+.reviews-carousel {
+    width: 100%;
+    max-width: 750px;
+    margin: 30px auto;
+    overflow: hidden;
+}
 
 #reviewList {
     width: 100%;
-    max-width: 760px;
-    margin: 30px auto;
     overflow: hidden;
-    position: relative;
 }
 
 
-/* =====================================================
-   SLIDING TRACK
-===================================================== */
+/* SLIDING TRACK */
 
 .review-carousel-track {
     display: flex;
     width: 100%;
-
-    transform: translateX(0);
 
     transition: transform 0.6s ease;
 
@@ -1117,9 +1117,7 @@ footer p {
 }
 
 
-/* =====================================================
-   REVIEW CARD
-===================================================== */
+/* REVIEW CARD */
 
 .review-carousel-track .review-card {
     flex: 0 0 100%;
@@ -1127,11 +1125,11 @@ footer p {
 
     box-sizing: border-box;
 
-    padding: 38px 40px 32px;
+    padding: 35px 40px;
 
-    background: #ffffff;
+    background: #fff;
 
-    border: 1px solid #e8e8e8;
+    border: 1px solid #e5e5e5;
 
     border-radius: 18px;
 
@@ -1144,9 +1142,7 @@ footer p {
 }
 
 
-/* =====================================================
-   QUOTE SYMBOL
-===================================================== */
+/* QUOTE */
 
 .review-carousel-track .review-card::before {
     content: "“";
@@ -1158,9 +1154,7 @@ footer p {
 
     font-family: Georgia, serif;
 
-    font-size: 58px;
-
-    line-height: 1;
+    font-size: 55px;
 
     color: #c9a227;
 
@@ -1168,43 +1162,35 @@ footer p {
 }
 
 
-/* =====================================================
-   STARS
-===================================================== */
+/* STARS */
 
 .review-carousel-track .stars {
     color: #c9a227;
 
-    font-size: 19px;
+    font-size: 18px;
 
     letter-spacing: 2px;
 
-    margin-bottom: 18px;
+    margin-bottom: 15px;
 }
 
 
-/* =====================================================
-   REVIEW MESSAGE
-===================================================== */
+/* REVIEW TEXT */
 
 .review-carousel-track .review-card p {
     max-width: 600px;
 
-    margin: 0 auto 20px;
+    margin: 0 auto 18px;
 
-    color: #333333;
+    color: #333;
 
     font-size: 15px;
 
     line-height: 1.7;
-
-    font-weight: 500;
 }
 
 
-/* =====================================================
-   CUSTOMER NAME
-===================================================== */
+/* CUSTOMER NAME */
 
 .review-carousel-track .review-card h4 {
     margin: 0;
@@ -1216,27 +1202,18 @@ footer p {
     font-weight: 800;
 }
 
-.review-carousel-track .review-card h4::before {
-    content: "— ";
 
-    color: #c9a227;
-}
-
-
-/* =====================================================
-   CAROUSEL DOTS
-===================================================== */
+/* DOTS */
 
 .review-carousel-dots {
     display: flex;
 
     justify-content: center;
-
     align-items: center;
 
     gap: 7px;
 
-    margin-top: 17px;
+    margin-top: 16px;
 }
 
 
@@ -1244,18 +1221,13 @@ footer p {
     display: block;
 
     width: 7px;
-
     height: 7px;
-
-    padding: 0;
 
     border-radius: 50%;
 
-    background: #cccccc;
+    background: #ccc;
 
-    transition:
-        width 0.3s ease,
-        background 0.3s ease;
+    transition: 0.3s ease;
 }
 
 
@@ -1268,51 +1240,30 @@ footer p {
 }
 
 
-/* =====================================================
+/* =========================
    MOBILE
-===================================================== */
+========================= */
 
 @media (max-width: 600px) {
 
-    #reviewList {
+    .reviews-carousel {
         width: 100%;
-
         margin: 25px auto;
     }
 
-
     .review-carousel-track .review-card {
-        padding: 32px 20px 28px;
-
+        padding: 30px 20px;
         border-radius: 15px;
     }
 
-
     .review-carousel-track .stars {
         font-size: 16px;
-
         letter-spacing: 1px;
-
-        margin-bottom: 14px;
     }
-
 
     .review-carousel-track .review-card p {
         font-size: 13px;
-
         line-height: 1.7;
-    }
-
-
-    .review-carousel-track .review-card h4 {
-        font-size: 13px;
-    }
-
-
-    .review-carousel-track .review-card::before {
-        left: 12px;
-
-        font-size: 45px;
     }
 
 }
