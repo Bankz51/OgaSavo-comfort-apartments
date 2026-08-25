@@ -1839,37 +1839,33 @@ function showGallery() {
 }
 
 /* =========================
-   LAPTOP REVIEW CARD ONLY
+   LAPTOP — ONE REVIEW PER SLIDE
 ========================= */
 
 @media (min-width: 601px) {
 
+    #reviewList {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .review-carousel-track {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        width: 100% !important;
+    }
+
     .review-carousel-track .review-card {
-        min-height: 300px;
-        height: 300px;
+        flex: 0 0 100% !important;
+        width: 100% !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
 
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        box-sizing: border-box !important;
 
-        text-align: center;
-        box-sizing: border-box;
-    }
+        margin: 0 !important;
 
-    .review-carousel-track .stars {
-        margin-bottom: 22px;
-    }
-
-    .review-carousel-track .review-card p {
-        margin: 0 0 27px;
-        max-width: 650px;
-        line-height: 1.8;
-    }
-
-    .review-carousel-track .review-card h4 {
-        margin: 0;
-        line-height: 1.5;
+        flex-shrink: 0 !important;
     }
 
 }
