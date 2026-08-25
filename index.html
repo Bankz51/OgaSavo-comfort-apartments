@@ -668,6 +668,10 @@ let reviewCarouselInterval = null;
 let reviewCurrentIndex = 0;
 
 
+/* =========================
+   REVIEW CAROUSEL
+========================= */
+
 function startReviewCarousel() {
 
     const track =
@@ -681,22 +685,31 @@ function startReviewCarousel() {
         );
 
 
+    /* Stop if carousel is not available */
+
     if (!track || dots.length <= 1) {
-
         return;
-
     }
 
 
-    /* Stop any previous carousel */
+    /* Stop any previous timer */
 
     clearInterval(
         reviewCarouselInterval
     );
 
 
+    /* Start from first review */
+
     reviewCurrentIndex = 0;
 
+    track.style.transform =
+        "translate3d(0, 0, 0)";
+
+
+    /* =========================
+       SHOW REVIEW
+    ========================== */
 
     function showReview(index) {
 
@@ -704,30 +717,39 @@ function startReviewCarousel() {
 
 
         track.style.transform =
-            `translateX(-${index * 100}%)`;
+            "translate3d(-" +
+            (index * 100) +
+            "%, 0, 0)";
 
 
-        dots.forEach((dot, i) => {
+        dots.forEach(
+            (dot, i) => {
 
-            dot.classList.toggle(
-                "active",
-                i === index
-            );
+                dot.classList.toggle(
+                    "active",
+                    i === index
+                );
 
-        });
+            }
+        );
 
     }
 
 
+    /* =========================
+       NEXT REVIEW
+    ========================== */
+
     function nextReview() {
 
-        reviewCurrentIndex++;
-
-
         if (
-            reviewCurrentIndex >=
-            dots.length
+            reviewCurrentIndex <
+            dots.length - 1
         ) {
+
+            reviewCurrentIndex++;
+
+        } else {
 
             reviewCurrentIndex = 0;
 
@@ -741,54 +763,24 @@ function startReviewCarousel() {
     }
 
 
-    /* Start automatic sliding */
+    /* =========================
+       AUTOMATIC SLIDE
+    ========================== */
 
     reviewCarouselInterval =
         setInterval(
             nextReview,
-            4000
+            5000
         );
 
 
-    /* Pause on phone touch */
-
-    track.addEventListener(
-        "touchstart",
-        () => {
-
-            clearInterval(
-                reviewCarouselInterval
-            );
-
-        },
-        { passive: true }
-    );
-
-
-    track.addEventListener(
-        "touchend",
-        () => {
-
-            clearInterval(
-                reviewCarouselInterval
-            );
-
-            reviewCarouselInterval =
-                setInterval(
-                    nextReview,
-                    4000
-                );
-
-        },
-        { passive: true }
-    );
-
-
-    /* Pause on laptop hover */
+    /* =========================
+       LAPTOP — PAUSE ON HOVER
+    ========================== */
 
     track.addEventListener(
         "mouseenter",
-        () => {
+        function () {
 
             clearInterval(
                 reviewCarouselInterval
@@ -800,18 +792,60 @@ function startReviewCarousel() {
 
     track.addEventListener(
         "mouseleave",
-        () => {
+        function () {
 
             clearInterval(
                 reviewCarouselInterval
             );
 
+
             reviewCarouselInterval =
                 setInterval(
                     nextReview,
-                    4000
+                    5000
                 );
 
+        }
+    );
+
+
+    /* =========================
+       PHONE — PAUSE ON TOUCH
+    ========================== */
+
+    track.addEventListener(
+        "touchstart",
+        function () {
+
+            clearInterval(
+                reviewCarouselInterval
+            );
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    track.addEventListener(
+        "touchend",
+        function () {
+
+            clearInterval(
+                reviewCarouselInterval
+            );
+
+
+            reviewCarouselInterval =
+                setInterval(
+                    nextReview,
+                    5000
+                );
+
+        },
+        {
+            passive: true
         }
     );
 
