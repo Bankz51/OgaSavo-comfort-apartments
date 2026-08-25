@@ -207,8 +207,27 @@ window.changeImage = function(direction) {
         galleryImages[currentImage];
 };
 
-document.getElementById("lightbox").addEventListener("click", function(event) {
-    if (event.target === this) {
-        window.closeLightbox();
-    }
-});
+
+/* =========================
+   LIGHTBOX BACKGROUND CLICK
+========================= */
+
+const lightbox =
+    document.getElementById("lightbox");
+
+if (lightbox) {
+
+    lightbox.addEventListener(
+        "click",
+        function(event) {
+
+            if (event.target === this) {
+
+                window.closeLightbox();
+
+            }
+
+        }
+    );
+
+}
