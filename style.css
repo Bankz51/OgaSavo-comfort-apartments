@@ -1862,7 +1862,7 @@ function showGallery() {
     }
 
     .review-carousel-track .review-card p {
-        margin: 0 0 22px;
+        margin: 1 1 22px;
         max-width: 650px;
         line-height: 1.8;
     }
