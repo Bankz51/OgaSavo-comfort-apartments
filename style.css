@@ -1797,3 +1797,43 @@ function showGallery() {
     width: 100% !important;
     box-sizing: border-box !important;
 }
+/* =========================
+   REVIEW TEXT & NAME FIX
+========================= */
+
+.review-carousel-track .review-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.review-carousel-track .review-card p {
+    display: block;
+    width: 100%;
+    margin: 0 auto 22px;
+    line-height: 1.8;
+}
+
+.review-carousel-track .review-card h4 {
+    display: block;
+    width: 100%;
+    margin: 0;
+    line-height: 1.4;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .review-carousel-track .review-card p {
+        margin-bottom: 18px;
+    }
+
+    .review-carousel-track .review-card h4 {
+        margin-top: 5px;
+    }
+
+}
