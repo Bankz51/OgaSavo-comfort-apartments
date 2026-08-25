@@ -420,9 +420,15 @@
 
     <h2>Guest Reviews</h2>
 
+    <div class="reviews-carousel">
+
     <div id="reviewList">
+
         <p>Loading reviews...</p>
+
     </div>
+
+</div>
 
     <div class="review-form">
 
@@ -546,33 +552,219 @@ const supabaseClient = supabase.createClient(
     SUPABASE_KEY
 );
 		async function loadReviews() {
+
     const { data, error } = await supabaseClient
         .from("reviews")
         .select("name, rating, review, created_at")
-		.eq("approved", true)
+        .eq("approved", true)
         .order("created_at", { ascending: false });
 
-    const reviewList = document.getElementById("reviewList");
+
+    const reviewList =
+        document.getElementById("reviewList");
+
 
     if (error) {
-        reviewList.innerHTML = "<p>Unable to load reviews.</p>";
+
+        reviewList.innerHTML =
+            "<p>Unable to load reviews.</p>";
+
         console.error(error);
+
         return;
+
     }
+
 
     if (!data || data.length === 0) {
-        reviewList.innerHTML = "<p>No reviews yet. Be the first to share your experience!</p>";
+
+        reviewList.innerHTML =
+            "<p>No reviews yet. Be the first to share your experience!</p>";
+
         return;
+
     }
 
-    reviewList.innerHTML = data.map(item => `
-        <div class="review-card">
-            <div class="stars">${"★".repeat(item.rating)}${"☆".repeat(5 - item.rating)}</div>
-            <p>${escapeHTML(item.review)}</p>
-            <h4>${escapeHTML(item.name)}</h4>
+
+    /* =========================
+       CREATE REVIEW CARDS
+    ========================== */
+
+    reviewList.innerHTML = `
+
+        <div class="review-track">
+
+            ${data.map(item => `
+
+                <div class="review-card">
+
+                    <div class="stars">
+                        ${"★".repeat(item.rating)}
+                        ${"☆".repeat(5 - item.rating)}
+                    </div>
+
+                    <p>
+                        ${escapeHTML(item.review)}
+                    </p>
+
+                    <h4>
+                        ${escapeHTML(item.name)}
+                    </h4>
+
+                </div>
+
+            `).join("")}
+
         </div>
-    `).join("");
+
+        <div class="review-dots">
+
+            ${data.map((_, index) => `
+
+                <span
+                    class="review-dot ${index === 0 ? "active" : ""}">
+                </span>
+
+            `).join("")}
+
+        </div>
+
+    `;
+
+
+    /* =========================
+       START CAROUSEL
+    ========================== */
+
+    startReviewCarousel();
+
+}
+
+		/* =========================
+   REVIEW CAROUSEL
+========================== */
+
+let reviewCarouselInterval;
+let reviewCurrentIndex = 0;
+
+
+function startReviewCarousel() {
+
+    const track =
+        document.querySelector(".review-track");
+
+    const dots =
+        document.querySelectorAll(".review-dot");
+
+
+    if (!track || dots.length <= 1) return;
+
+
+    function showReview(index) {
+
+        reviewCurrentIndex = index;
+
+
+        track.style.transform =
+            `translateX(-${index * 100}%)`;
+
+
+        dots.forEach((dot, i) => {
+
+            dot.classList.toggle(
+                "active",
+                i === index
+            );
+
+        });
+
     }
+
+
+    function nextReview() {
+
+        reviewCurrentIndex++;
+
+        if (
+            reviewCurrentIndex >=
+            dots.length
+        ) {
+
+            reviewCurrentIndex = 0;
+
+        }
+
+
+        showReview(reviewCurrentIndex);
+
+    }
+
+
+    reviewCarouselInterval =
+        setInterval(
+            nextReview,
+            4000
+        );
+
+
+    /* PAUSE WHEN TOUCHED */
+
+    track.addEventListener(
+        "touchstart",
+        () => {
+
+            clearInterval(
+                reviewCarouselInterval
+            );
+
+        },
+        { passive: true }
+    );
+
+
+    track.addEventListener(
+        "touchend",
+        () => {
+
+            reviewCarouselInterval =
+                setInterval(
+                    nextReview,
+                    4000
+                );
+
+        },
+        { passive: true }
+    );
+
+
+    /* PAUSE WHEN MOUSE IS OVER IT */
+
+    track.addEventListener(
+        "mouseenter",
+        () => {
+
+            clearInterval(
+                reviewCarouselInterval
+            );
+
+        }
+    );
+
+
+    track.addEventListener(
+        "mouseleave",
+        () => {
+
+            reviewCarouselInterval =
+                setInterval(
+                    nextReview,
+                    4000
+                );
+
+        }
+    );
+
+}
 		
 async function submitReview() {
     const name = document.getElementById("reviewName").value.trim();
