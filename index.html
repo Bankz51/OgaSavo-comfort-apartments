@@ -553,6 +553,12 @@ const supabaseClient = supabase.createClient(
 );
 		async function loadReviews() {
 
+    const reviewList =
+        document.getElementById("reviewList");
+
+    if (!reviewList) return;
+
+
     const { data, error } = await supabaseClient
         .from("reviews")
         .select("name, rating, review, created_at")
@@ -560,16 +566,12 @@ const supabaseClient = supabase.createClient(
         .order("created_at", { ascending: false });
 
 
-    const reviewList =
-        document.getElementById("reviewList");
-
-
     if (error) {
+
+        console.error("Supabase review error:", error);
 
         reviewList.innerHTML =
             "<p>Unable to load reviews.</p>";
-
-        console.error(error);
 
         return;
 
@@ -587,77 +589,110 @@ const supabaseClient = supabase.createClient(
 
 
     /* =========================
-       CREATE REVIEW CARDS
+       CREATE REVIEW CAROUSEL
     ========================== */
 
     reviewList.innerHTML = `
 
-        <div class="review-track">
+        <div class="review-carousel-track">
 
-            ${data.map(item => `
+            ${data.map(item => {
 
-                <div class="review-card">
+                const rating = Number(item.rating) || 0;
 
-                    <div class="stars">
-                        ${"★".repeat(item.rating)}
-                        ${"☆".repeat(5 - item.rating)}
+                return `
+
+                    <div class="review-card">
+
+                        <div class="stars">
+                            ${"★".repeat(rating)}
+                            ${"☆".repeat(5 - rating)}
+                        </div>
+
+                        <p>
+                            ${escapeHTML(item.review)}
+                        </p>
+
+                        <h4>
+                            ${escapeHTML(item.name)}
+                        </h4>
+
                     </div>
 
-                    <p>
-                        ${escapeHTML(item.review)}
-                    </p>
+                `;
 
-                    <h4>
-                        ${escapeHTML(item.name)}
-                    </h4>
+            }).join("")}
+
+        </div>
+
+
+        ${
+            data.length > 1
+            ? `
+
+                <div class="review-carousel-dots">
+
+                    ${data.map((_, index) => `
+
+                        <span
+                            class="review-carousel-dot ${
+                                index === 0 ? "active" : ""
+                            }">
+                        </span>
+
+                    `).join("")}
 
                 </div>
 
-            `).join("")}
-
-        </div>
-
-        <div class="review-dots">
-
-            ${data.map((_, index) => `
-
-                <span
-                    class="review-dot ${index === 0 ? "active" : ""}">
-                </span>
-
-            `).join("")}
-
-        </div>
+            `
+            : ""
+        }
 
     `;
 
-
-    /* =========================
-       START CAROUSEL
-    ========================== */
 
     startReviewCarousel();
 
 }
 
-		/* =========================
-   REVIEW CAROUSEL
-========================== */
 
-let reviewCarouselInterval;
+/* =========================
+   REVIEW CAROUSEL
+========================= */
+
+let reviewCarouselInterval = null;
+
 let reviewCurrentIndex = 0;
 
 
 function startReviewCarousel() {
 
     const track =
-        document.querySelector(".review-track");
+        document.querySelector(
+            ".review-carousel-track"
+        );
 
     const dots =
-        document.querySelectorAll(".review-dot");
+        document.querySelectorAll(
+            ".review-carousel-dot"
+        );
 
 
-    if (!track || dots.length <= 1) return;
+    if (!track || dots.length <= 1) {
+
+        return;
+
+    }
+
+
+    /* Stop any previous carousel */
+
+    clearInterval(
+        reviewCarouselInterval
+    );
+
+
+    reviewCurrentIndex = 0;
 
 
     function showReview(index) {
@@ -685,6 +720,7 @@ function startReviewCarousel() {
 
         reviewCurrentIndex++;
 
+
         if (
             reviewCurrentIndex >=
             dots.length
@@ -695,10 +731,14 @@ function startReviewCarousel() {
         }
 
 
-        showReview(reviewCurrentIndex);
+        showReview(
+            reviewCurrentIndex
+        );
 
     }
 
+
+    /* Start automatic sliding */
 
     reviewCarouselInterval =
         setInterval(
@@ -707,7 +747,7 @@ function startReviewCarousel() {
         );
 
 
-    /* PAUSE WHEN TOUCHED */
+    /* Pause on phone touch */
 
     track.addEventListener(
         "touchstart",
@@ -726,6 +766,10 @@ function startReviewCarousel() {
         "touchend",
         () => {
 
+            clearInterval(
+                reviewCarouselInterval
+            );
+
             reviewCarouselInterval =
                 setInterval(
                     nextReview,
@@ -737,7 +781,7 @@ function startReviewCarousel() {
     );
 
 
-    /* PAUSE WHEN MOUSE IS OVER IT */
+    /* Pause on laptop hover */
 
     track.addEventListener(
         "mouseenter",
@@ -755,6 +799,10 @@ function startReviewCarousel() {
         "mouseleave",
         () => {
 
+            clearInterval(
+                reviewCarouselInterval
+            );
+
             reviewCarouselInterval =
                 setInterval(
                     nextReview,
@@ -765,51 +813,131 @@ function startReviewCarousel() {
     );
 
 }
-		
-async function submitReview() {
-    const name = document.getElementById("reviewName").value.trim();
-    const rating = Number(document.getElementById("reviewRating").value);
-    const review = document.getElementById("reviewText").value.trim();
-    const message = document.getElementById("reviewMessage");
 
-    if (!name || !rating || !review) {
-        message.textContent = "Please fill in all fields.";
+
+/* =========================
+   SUBMIT REVIEW
+========================= */
+
+async function submitReview() {
+
+    const name =
+        document
+            .getElementById("reviewName")
+            .value
+            .trim();
+
+
+    const rating =
+        Number(
+            document
+                .getElementById("reviewRating")
+                .value
+        );
+
+
+    const review =
+        document
+            .getElementById("reviewText")
+            .value
+            .trim();
+
+
+    const message =
+        document.getElementById(
+            "reviewMessage"
+        );
+
+
+    if (
+        !name ||
+        !rating ||
+        !review
+    ) {
+
+        message.textContent =
+            "Please fill in all fields.";
+
         return;
+
     }
 
-    message.textContent = "Submitting...";
 
-    const { error } = await supabaseClient
-        .from("reviews")
-        .insert([
-            {
-                name: name,
-                rating: rating,
-                review: review
-            }
-        ]);
+    message.textContent =
+        "Submitting...";
 
-  if (error) {
-    console.error("Supabase error:", error);
-    message.textContent = "Error: " + error.message;
-    return;
+
+    const { error } =
+        await supabaseClient
+            .from("reviews")
+            .insert([
+                {
+                    name: name,
+                    rating: rating,
+                    review: review
+                }
+            ]);
+
+
+    if (error) {
+
+        console.error(
+            "Supabase error:",
+            error
+        );
+
+        message.textContent =
+            "Error: " +
+            error.message;
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "reviewName"
+    ).value = "";
+
+
+    document.getElementById(
+        "reviewRating"
+    ).value = "";
+
+
+    document.getElementById(
+        "reviewText"
+    ).value = "";
+
+
+    message.textContent =
+        "Thank you! Your review has been submitted.";
+
+
+    await loadReviews();
+
 }
 
-    document.getElementById("reviewName").value = "";
-    document.getElementById("reviewRating").value = "";
-    document.getElementById("reviewText").value = "";
 
-    message.textContent = "Thank you! Your review has been submitted.";
-
-    loadReviews();
-}
+/* =========================
+   ESCAPE HTML
+========================= */
 
 function escapeHTML(text) {
-    const div = document.createElement("div");
+
+    const div =
+        document.createElement("div");
+
     div.textContent = text;
+
     return div.innerHTML;
+
 }
 
+
+/* =========================
+   LOAD REVIEWS
+========================= */
 loadReviews();
 </script>
 	<script>
